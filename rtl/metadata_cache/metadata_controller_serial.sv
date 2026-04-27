@@ -96,6 +96,25 @@ module metadata_controller_serial #(
     .update_data_i  (cache_update_data)
   );
 
+
+  logic [CACHELINE_BITS-1:0] alloc_line;
+  logic [VERSION_W-1:0]      alloc_old_version;
+  logic [VERSION_W-1:0]      alloc_new_version;
+  logic                      alloc_overflow;
+
+  metadata_counter_allocator #(
+    .CACHELINE_BITS (CACHELINE_BITS),
+    .VERSION_W      (VERSION_W)
+  ) u_counter_allocator (
+    .line_i        (line_q),
+    .lane_i        (lane_q),
+    .alloc_i       (op_q == META_ALLOC_VERSION),
+    .line_o        (alloc_line),
+    .old_version_o (alloc_old_version),
+    .new_version_o (alloc_new_version),
+    .overflow_o    (alloc_overflow)
+  );
+
   function automatic logic [VERSION_W-1:0] get_version_lane;
     input logic [CACHELINE_BITS-1:0] line;
     input logic [2:0] lane;
@@ -233,13 +252,19 @@ module metadata_controller_serial #(
 
       MD_MODIFY: begin
         if (op_q == META_ALLOC_VERSION) begin
-          line_n = set_version_lane(line_q, lane_q, get_version_lane(line_q, lane_q) + 1'b1);
+          // Allocate a fresh version/counter lane. The allocator reserves 0 for
+          // uninitialized metadata, returns 1 on first allocation, increments on
+          // later writes, and blocks wraparound.
+          line_n  = alloc_line;
+          error_n = alloc_overflow;
+          state_n = alloc_overflow ? MD_RESPOND : MD_MEM_WRITE_REQ;
         end else if (op_q == META_WRITE_TAG) begin
-          line_n = set_tag_lane(line_q, lane_q, tag_q);
+          line_n  = set_tag_lane(line_q, lane_q, tag_q);
+          state_n = MD_MEM_WRITE_REQ;
         end else begin
-          line_n = wdata_q;
+          line_n  = wdata_q;
+          state_n = MD_MEM_WRITE_REQ;
         end
-        state_n = MD_MEM_WRITE_REQ;
       end
 
       MD_MEM_WRITE_REQ: begin

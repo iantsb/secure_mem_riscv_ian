@@ -34,6 +34,7 @@ set sv_files [list \
   [file join $RTL_DIR common lzc.sv] \
   [file join $RTL_DIR topology securememory_topology_clean.sv] \
   [file join $RTL_DIR metadata_cache metadata_cache.sv] \
+  [file join $RTL_DIR metadata_cache metadata_counter_allocator.sv] \
   [file join $RTL_DIR metadata_cache metadata_controller_serial.sv] \
   [file join $RTL_DIR memory-encryption-unit aes_ctr_nx128.sv] \
   [file join $RTL_DIR memory-encryption-unit meu_ctr_datapath.sv] \
