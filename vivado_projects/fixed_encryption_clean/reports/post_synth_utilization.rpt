@@ -1,0 +1,67 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Mon Apr 27 11:11:38 2026
+| Host         : lhotse running 64-bit Ubuntu 24.04.3 LTS
+| Command      : report_utilization -file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports/post_synth_utilization.rpt -hierarchical
+| Design       : secure_serial_clean_top
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                   Instance                  |                Module               | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++---------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| secure_serial_clean_top                     |                               (top) |      27614 |      27614 |       0 |    0 | 20482 |      0 |      0 |          0 |
+|   (secure_serial_clean_top)                 |                               (top) |          0 |          0 |       0 |    0 |     0 |      0 |      0 |          0 |
+|   u_secure_memory_controller_serial_bmt     | secure_memory_controller_serial_bmt |      27614 |      27614 |       0 |    0 | 20482 |      0 |      0 |          0 |
+|     (u_secure_memory_controller_serial_bmt) | secure_memory_controller_serial_bmt |       1602 |       1602 |       0 |    0 |  1290 |      0 |      0 |          0 |
+|     u_integritychecker                      |                integritychecker_bmt |       4980 |       4980 |       0 |    0 |  4069 |      0 |      0 |          0 |
+|       (u_integritychecker)                  |                integritychecker_bmt |       2449 |       2449 |       0 |    0 |  1456 |      0 |      0 |          0 |
+|       u_hash_compare                        |                    bmt_hash_compare |       2531 |       2531 |       0 |    0 |  2613 |      0 |      0 |          0 |
+|         (u_hash_compare)                    |                    bmt_hash_compare |        143 |        143 |       0 |    0 |   266 |      0 |      0 |          0 |
+|         u_aes_core                          |                         aes_core_12 |       2388 |       2388 |       0 |    0 |  2347 |      0 |      0 |          0 |
+|           (u_aes_core)                      |                         aes_core_12 |        882 |        882 |       0 |    0 |     5 |      0 |      0 |          0 |
+|           enc_block                         |               aes_encipher_block_13 |        430 |        430 |       0 |    0 |   146 |      0 |      0 |          0 |
+|           keymem                            |                      aes_key_mem_14 |       1044 |       1044 |       0 |    0 |  2196 |      0 |      0 |          0 |
+|           sbox_inst                         |                         aes_sbox_15 |         32 |         32 |       0 |    0 |     0 |      0 |      0 |          0 |
+|     u_metadata_controller                   |          metadata_controller_serial |      12415 |      12415 |       0 |    0 |  5274 |      0 |      0 |          0 |
+|       (u_metadata_controller)               |          metadata_controller_serial |        962 |        962 |       0 |    0 |   734 |      0 |      0 |          0 |
+|       u_cache                               |                      metadata_cache |      11453 |      11453 |       0 |    0 |  4540 |      0 |      0 |          0 |
+|     u_meu_ctr                               |                    meu_ctr_datapath |       8617 |       8617 |       0 |    0 |  9849 |      0 |      0 |          0 |
+|       (u_meu_ctr)                           |                    meu_ctr_datapath |       1026 |       1026 |       0 |    0 |   513 |      0 |      0 |          0 |
+|       u_ctr                                 |                       aes_ctr_nx128 |       7591 |       7591 |       0 |    0 |  9336 |      0 |      0 |          0 |
+|         (u_ctr)                             |                       aes_ctr_nx128 |          2 |          2 |       0 |    0 |   460 |      0 |      0 |          0 |
+|         gen_aes_core[0].u_aes_core          |                            aes_core |       1895 |       1895 |       0 |    0 |  2219 |      0 |      0 |          0 |
+|           (gen_aes_core[0].u_aes_core)      |                            aes_core |        889 |        889 |       0 |    0 |     5 |      0 |      0 |          0 |
+|           enc_block                         |                aes_encipher_block_9 |        130 |        130 |       0 |    0 |   149 |      0 |      0 |          0 |
+|           keymem                            |                      aes_key_mem_10 |        870 |        870 |       0 |    0 |  2065 |      0 |      0 |          0 |
+|           sbox_inst                         |                         aes_sbox_11 |          6 |          6 |       0 |    0 |     0 |      0 |      0 |          0 |
+|         gen_aes_core[1].u_aes_core          |                          aes_core_0 |       1895 |       1895 |       0 |    0 |  2218 |      0 |      0 |          0 |
+|           (gen_aes_core[1].u_aes_core)      |                          aes_core_0 |        889 |        889 |       0 |    0 |     5 |      0 |      0 |          0 |
+|           enc_block                         |                aes_encipher_block_6 |        130 |        130 |       0 |    0 |   148 |      0 |      0 |          0 |
+|           keymem                            |                       aes_key_mem_7 |        870 |        870 |       0 |    0 |  2065 |      0 |      0 |          0 |
+|           sbox_inst                         |                          aes_sbox_8 |          6 |          6 |       0 |    0 |     0 |      0 |      0 |          0 |
+|         gen_aes_core[2].u_aes_core          |                          aes_core_1 |       1898 |       1898 |       0 |    0 |  2219 |      0 |      0 |          0 |
+|           (gen_aes_core[2].u_aes_core)      |                          aes_core_1 |        892 |        892 |       0 |    0 |     5 |      0 |      0 |          0 |
+|           enc_block                         |                aes_encipher_block_3 |        130 |        130 |       0 |    0 |   149 |      0 |      0 |          0 |
+|           keymem                            |                       aes_key_mem_4 |        870 |        870 |       0 |    0 |  2065 |      0 |      0 |          0 |
+|           sbox_inst                         |                          aes_sbox_5 |          6 |          6 |       0 |    0 |     0 |      0 |      0 |          0 |
+|         gen_aes_core[3].u_aes_core          |                          aes_core_2 |       1901 |       1901 |       0 |    0 |  2220 |      0 |      0 |          0 |
+|           (gen_aes_core[3].u_aes_core)      |                          aes_core_2 |        891 |        891 |       0 |    0 |     5 |      0 |      0 |          0 |
+|           enc_block                         |                  aes_encipher_block |        133 |        133 |       0 |    0 |   150 |      0 |      0 |          0 |
+|           keymem                            |                         aes_key_mem |        871 |        871 |       0 |    0 |  2065 |      0 |      0 |          0 |
+|           sbox_inst                         |                            aes_sbox |          6 |          6 |       0 |    0 |     0 |      0 |      0 |          0 |
++---------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

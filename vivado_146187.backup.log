@@ -1,0 +1,92 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Apr 27 11:04:19 2026
+# Process ID         : 146187
+# Current directory  : /home/ian/amdFPGA/projects/secure_mem_riscv_ian
+# Command line       : vivado -mode batch -source scripts/run_synth_fixed_encryption_clean_serial.tcl
+# Log file           : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado.log
+# Journal file       : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado.jou
+# Running On         : lhotse
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700H
+# CPU Frequency      : 2696.792 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 67094 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 75684 MB
+# Available Virtual  : 64928 MB
+#-----------------------------------------------------------
+source scripts/run_synth_fixed_encryption_clean_serial.tcl
+# set script_dir [file dirname [file normalize [info script]]]
+# set default_root [file normalize [file join $script_dir ..]]
+# set default_xpr  [file join $default_root vivado_projects fixed_encryption_clean fixed_encryption_clean.xpr]
+# set XPR_PATH $default_xpr
+# if {$argc >= 1} { set XPR_PATH [file normalize [lindex $argv 0]] }
+# if {![file exists $XPR_PATH]} {
+#   puts "ERROR: project not found: $XPR_PATH"
+#   puts "Run create_fixed_encryption_clean_serial.tcl first, or pass the .xpr path as -tclargs."
+#   exit 1
+# }
+# open_project $XPR_PATH
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+# update_compile_order -fileset sources_1
+# reset_run synth_1
+# launch_runs synth_1 -jobs 4
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Mon Apr 27 11:04:27 2026] Launched synth_1...
+Run output will be captured here: /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/runme.log
+# wait_on_run synth_1
+[Mon Apr 27 11:04:27 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log secure_serial_clean_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source secure_serial_clean_top.tcl
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Mon Apr 27 11:04:29 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source secure_serial_clean_top.tcl -notrace
+Command: synth_design -top secure_serial_clean_top -part xc7z020clg400-1 -directive PerformanceOptimized -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 146375
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1948.863 ; gain = 444.871 ; free physical = 44556 ; free virtual = 60154
+---------------------------------------------------------------------------------
+ERROR: [Synth 8-36] 'cf_math_pkg' is not declared [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv:33]
+INFO: [Synth 8-10285] module 'lzc' is ignored due to previous errors [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv:113]
+INFO: [Synth 8-9084] Verilog file '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv' ignored due to errors
+ERROR: [Synth 8-12188] Failed to read verilog '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv'
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2018.832 ; gain = 514.840 ; free physical = 44466 ; free virtual = 60073
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+7 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 11:04:41 2026...
+[Mon Apr 27 11:04:51 2026] synth_1 finished
+ERROR: [Vivado 12-13638] Failed runs(s) : 'synth_1'
+wait_on_runs: Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1507.047 ; gain = 0.000 ; free physical = 45805 ; free virtual = 61421
+ERROR: [Common 17-39] 'wait_on_runs' failed due to earlier errors.
+
+    while executing
+"wait_on_run synth_1"
+    (file "scripts/run_synth_fixed_encryption_clean_serial.tcl" line 27)
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 11:04:51 2026...

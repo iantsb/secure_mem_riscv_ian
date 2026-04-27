@@ -1,0 +1,73 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Mon Apr 27 11:11:45 2026
+| Host         : lhotse running 64-bit Ubuntu 24.04.3 LTS
+| Command      : report_drc -file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports/post_synth_drc.rpt
+| Design       : secure_serial_clean_top
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: synth_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 4
++---------+------------------+----------------------------+--------+
+| Rule    | Severity         | Description                | Checks |
++---------+------------------+----------------------------+--------+
+| NSTD-1  | Critical Warning | Unspecified I/O Standard   | 1      |
+| UCIO-1  | Critical Warning | Unconstrained Logical Port | 1      |
+| IOCNT-1 | Warning          | Number of IOs              | 1      |
+| ZPS7-1  | Warning          | PS7 block required         | 1      |
++---------+------------------+----------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+NSTD-1#1 Critical Warning
+Unspecified I/O Standard  
+3370 out of 3370 logical ports use I/O standard (IOSTANDARD) value 'DEFAULT', instead of a user assigned specific value. This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all I/O standards. This design will fail to generate a bitstream unless all logical ports have a user specified I/O standard value defined. To allow bitstream creation with unspecified I/O standard values (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks NSTD-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run. Problem ports: clk_i, data_mem_req_addr_o[55:0], data_mem_req_ready_i,
+data_mem_req_valid_o, data_mem_req_wdata_o[511:0], data_mem_req_write_o,
+data_mem_rsp_data_i[511:0], meta_mem_req_addr_o[55:0],
+meta_mem_req_wdata_o[511:0], meta_mem_rsp_data_i[511:0], req_addr_i[55:0],
+req_base_i[55:0], req_mask_i[55:0], req_wdata_i[511:0], rsp_rdata_o[511:0]
+ (the first 15 of 29 listed).
+Related violations: <none>
+
+UCIO-1#1 Critical Warning
+Unconstrained Logical Port  
+3370 out of 3370 logical ports have no user assigned specific location constraint (LOC). This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all pin locations. This design will fail to generate a bitstream unless all logical ports have a user specified site LOC constraint defined.  To allow bitstream creation with unspecified pin locations (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks UCIO-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run.  Problem ports: clk_i, data_mem_req_addr_o[55:0], data_mem_req_ready_i,
+data_mem_req_valid_o, data_mem_req_wdata_o[511:0], data_mem_req_write_o,
+data_mem_rsp_data_i[511:0], meta_mem_req_addr_o[55:0],
+meta_mem_req_wdata_o[511:0], meta_mem_rsp_data_i[511:0], req_addr_i[55:0],
+req_base_i[55:0], req_mask_i[55:0], req_wdata_i[511:0], rsp_rdata_o[511:0]
+ (the first 15 of 29 listed).
+Related violations: <none>
+
+IOCNT-1#1 Warning
+Number of IOs  
+The design contains 3370 unplaced I/O ports while the target device, xc7z020clg400-1, has 125 remaining available user I/O pins. This DRC assumes that all ports which do not drive MGT pins should be placed on user I/O pins. To correct this issue:
+1. Ensure you are targeting the correct device and package. Select a larger device or different package if necessary.
+2. Check the top-level ports of the design to ensure the correct number of ports are specified.
+3. Consider design changes to reduce the number of user I/O pins needed.
+
+Related violations: <none>
+
+ZPS7-1#1 Warning
+PS7 block required  
+The PS7 cell must be used in this Zynq design in order to enable correct default configuration.
+Related violations: <none>
+
+

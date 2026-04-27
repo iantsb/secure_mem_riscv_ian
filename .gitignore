@@ -1,0 +1,30 @@
+# Vivado projects/runs
+vivado_projects/
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.gen/
+*.xpr
+*.jou
+*.log
+*.str
+*.dcp
+*.bit
+*.ltx
+*.rpt
+*.wdb
+*.pb
+
+# Temporary/editor files
+*~
+*.swp
+.DS_Store
+
+# Python/cache
+__pycache__/
+*.pyc
+
+# Large/generated
+obj_dir/

@@ -1,0 +1,568 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Apr 27 11:09:49 2026
+# Process ID         : 147592
+# Current directory  : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1
+# Command line       : vivado -log secure_serial_clean_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source secure_serial_clean_top.tcl
+# Log file           : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/secure_serial_clean_top.vds
+# Journal file       : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/vivado.jou
+# Running On         : lhotse
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700H
+# CPU Frequency      : 1410.512 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 67094 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 75684 MB
+# Available Virtual  : 64428 MB
+#-----------------------------------------------------------
+source secure_serial_clean_top.tcl -notrace
+Command: synth_design -top secure_serial_clean_top -part xc7z020clg400-1 -directive PerformanceOptimized -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 147616
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1948.605 ; gain = 444.871 ; free physical = 44692 ; free virtual = 60288
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'secure_serial_clean_top' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/top/secure_serial_clean_top.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'secure_memory_controller_serial_bmt' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-controller/secure_memory_controller_serial_bmt.sv:10]
+	Parameter PLEN bound to: 32'sb00000000000000000000000000111000 
+	Parameter CACHELINE_BITS bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+	Parameter TAG_W bound to: 32'sb00000000000000000000000010000000 
+	Parameter MARY bound to: 32'sb00000000000000000000000000001000 
+INFO: [Synth 8-6157] synthesizing module 'securememory_topology_clean' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/topology/securememory_topology_clean.sv:9]
+	Parameter PLEN bound to: 32'sb00000000000000000000000000111000 
+	Parameter CACHELINE_BITS bound to: 32'sb00000000000000000000001000000000 
+	Parameter MARY bound to: 32'sb00000000000000000000000000001000 
+INFO: [Synth 8-6157] synthesizing module 'lzc' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv:25]
+	Parameter WIDTH bound to: 32'b00000000000000000000000000111000 
+	Parameter MODE bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'lzc' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'securememory_topology_clean' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/topology/securememory_topology_clean.sv:9]
+INFO: [Synth 8-6157] synthesizing module 'metadata_controller_serial' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:9]
+	Parameter PLEN bound to: 32'sb00000000000000000000000000111000 
+	Parameter CACHELINE_BITS bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+	Parameter TAG_W bound to: 32'sb00000000000000000000000010000000 
+INFO: [Synth 8-6157] synthesizing module 'metadata_cache' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv:3]
+	Parameter ADDR_WIDTH bound to: 32'sb00000000000000000000000000111000 
+	Parameter DATA_WIDTH bound to: 32'sb00000000000000000000001000000000 
+	Parameter CACHE_LINES bound to: 32'sb00000000000000000000000000001000 
+	Parameter NUM_WAYS bound to: 32'sb00000000000000000000000000000010 
+INFO: [Synth 8-6155] done synthesizing module 'metadata_cache' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv:3]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:177]
+INFO: [Synth 8-6155] done synthesizing module 'metadata_controller_serial' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:9]
+INFO: [Synth 8-6157] synthesizing module 'integritychecker_bmt' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:15]
+	Parameter PLEN bound to: 32'sb00000000000000000000000000111000 
+	Parameter CACHELINE_BITS bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+	Parameter TAG_W bound to: 32'sb00000000000000000000000010000000 
+	Parameter MARY bound to: 32'sb00000000000000000000000000001000 
+	Parameter HASH_KEY bound to: 256'b0110000000111101111010110001000000010101110010100111000110111110001010110111001110101110111100001000010101111101011101111000000100011111001101010010110000000111001110110110000100001000110101110010110110011000000100001010001100001001000101001101111111110100 
+	Parameter HASH_KEYLEN bound to: 1'b1 
+INFO: [Synth 8-6157] synthesizing module 'bmt_hash_compare' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:12]
+	Parameter ADDR_W bound to: 32'sb00000000000000000000000000111000 
+	Parameter DATA_W bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+	Parameter TAG_W bound to: 32'sb00000000000000000000000010000000 
+	Parameter HASH_KEY bound to: 256'b0110000000111101111010110001000000010101110010100111000110111110001010110111001110101110111100001000010101111101011101111000000100011111001101010010110000000111001110110110000100001000110101110010110110011000000100001010001100001001000101001101111111110100 
+	Parameter HASH_KEYLEN bound to: 1'b1 
+INFO: [Synth 8-6157] synthesizing module 'aes_core' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_core.v:42]
+INFO: [Synth 8-6157] synthesizing module 'aes_encipher_block' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_encipher_block.v:43]
+INFO: [Synth 8-226] default block is never used [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_encipher_block.v:423]
+INFO: [Synth 8-6155] done synthesizing module 'aes_encipher_block' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_encipher_block.v:43]
+INFO: [Synth 8-6157] synthesizing module 'aes_decipher_block' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_decipher_block.v:43]
+INFO: [Synth 8-6157] synthesizing module 'aes_inv_sbox' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_inv_sbox.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'aes_inv_sbox' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_inv_sbox.v:40]
+INFO: [Synth 8-226] default block is never used [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_decipher_block.v:463]
+INFO: [Synth 8-6155] done synthesizing module 'aes_decipher_block' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_decipher_block.v:43]
+INFO: [Synth 8-6157] synthesizing module 'aes_key_mem' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_key_mem.v:41]
+INFO: [Synth 8-226] default block is never used [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_key_mem.v:236]
+INFO: [Synth 8-6155] done synthesizing module 'aes_key_mem' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_key_mem.v:41]
+INFO: [Synth 8-6157] synthesizing module 'aes_sbox' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_sbox.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'aes_sbox' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_sbox.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'aes_core' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_core.v:42]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:126]
+INFO: [Synth 8-6155] done synthesizing module 'bmt_hash_compare' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:12]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:191]
+INFO: [Synth 8-6155] done synthesizing module 'integritychecker_bmt' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:15]
+INFO: [Synth 8-6157] synthesizing module 'meu_ctr_datapath' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/meu_ctr_datapath.sv:5]
+	Parameter ADDR_W bound to: 32'sb00000000000000000000000000111000 
+	Parameter DATA_W bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+	Parameter AES_KEY bound to: 256'b0010101101111110000101010001011000101000101011101101001010100110101010111111011100010101100010000000100111001111010011110011110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter AES_KEYLEN bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'aes_ctr_nx128' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/aes_ctr_nx128.sv:9]
+	Parameter DATA_WIDTH bound to: 32'sb00000000000000000000001000000000 
+	Parameter CHUNK_WIDTH bound to: 32'sb00000000000000000000000010000000 
+	Parameter AES_KEY bound to: 256'b0010101101111110000101010001011000101000101011101101001010100110101010111111011100010101100010000000100111001111010011110011110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter AES_KEYLEN bound to: 1'b0 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/aes_ctr_nx128.sv:74]
+INFO: [Synth 8-226] default block is never used [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/aes_ctr_nx128.sv:74]
+INFO: [Synth 8-6155] done synthesizing module 'aes_ctr_nx128' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/aes_ctr_nx128.sv:9]
+INFO: [Synth 8-6155] done synthesizing module 'meu_ctr_datapath' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/meu_ctr_datapath.sv:5]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-controller/secure_memory_controller_serial_bmt.sv:317]
+INFO: [Synth 8-6155] done synthesizing module 'secure_memory_controller_serial_bmt' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-controller/secure_memory_controller_serial_bmt.sv:10]
+INFO: [Synth 8-6155] done synthesizing module 'secure_serial_clean_top' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/top/secure_serial_clean_top.sv:7]
+WARNING: [Synth 8-6014] Unused sequential element fill_way_reg was removed.  [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv:98]
+WARNING: [Synth 8-6014] Unused sequential element found_hit_reg was removed.  [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv:106]
+WARNING: [Synth 8-6014] Unused sequential element tag_line_q_reg was removed.  [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:333]
+WARNING: [Synth 8-7129] Port addr_i[55] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[54] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[53] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[52] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[51] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[50] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[49] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[48] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[47] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[46] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[45] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[44] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[43] in module meu_ctr_datapath is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr_i[42] in module meu_ctr_datapath is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2075.574 ; gain = 571.840 ; free physical = 44525 ; free virtual = 60123
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2084.480 ; gain = 580.746 ; free physical = 44524 ; free virtual = 60122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2092.484 ; gain = 588.750 ; free physical = 44524 ; free virtual = 60122
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'metadata_controller_serial'
+INFO: [Synth 8-802] inferred FSM for state register 'enc_ctrl_reg_reg' in module 'aes_encipher_block'
+INFO: [Synth 8-802] inferred FSM for state register 'dec_ctrl_reg_reg' in module 'aes_decipher_block'
+INFO: [Synth 8-802] inferred FSM for state register 'key_mem_ctrl_reg_reg' in module 'aes_key_mem'
+INFO: [Synth 8-802] inferred FSM for state register 'aes_core_ctrl_reg_reg' in module 'aes_core'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'bmt_hash_compare'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'integritychecker_bmt'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'aes_ctr_nx128'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'secure_memory_controller_serial_bmt'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 MD_IDLE |                          0000001 |                             0000
+               MD_LOOKUP |                          0000010 |                             0001
+         MD_MEM_READ_REQ |                          0000100 |                             0010
+        MD_MEM_READ_WAIT |                          0001000 |                             0011
+               MD_MODIFY |                          0010000 |                             0100
+        MD_MEM_WRITE_REQ |                          0100000 |                             0101
+              MD_RESPOND |                          1000000 |                             0110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'metadata_controller_serial'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               CTRL_IDLE |                             0001 |                               00
+               CTRL_INIT |                             0010 |                               01
+               CTRL_SBOX |                             0100 |                               10
+               CTRL_MAIN |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'enc_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_encipher_block'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               CTRL_IDLE |                             0001 |                               00
+               CTRL_INIT |                             0010 |                               01
+               CTRL_SBOX |                             0100 |                               10
+               CTRL_MAIN |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'dec_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_decipher_block'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               CTRL_IDLE |                             0001 |                              000
+               CTRL_INIT |                             0010 |                              001
+           CTRL_GENERATE |                             0100 |                              010
+               CTRL_DONE |                             1000 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'key_mem_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_key_mem'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               CTRL_IDLE |                              001 |                               00
+               CTRL_INIT |                              010 |                               01
+               CTRL_NEXT |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'aes_core_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_core'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+           HC_INIT_START |                           000001 |                              000
+            HC_INIT_WAIT |                           000010 |                              001
+                HC_READY |                           000100 |                              010
+               HC_LAUNCH |                           001000 |                              011
+                 HC_WAIT |                           010000 |                              100
+                 HC_DONE |                           100000 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'bmt_hash_compare'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 IC_IDLE |                      00000000001 |                            00000
+     IC_READ_VERSION_REQ |                      00000000010 |                            00001
+    IC_READ_VERSION_WAIT |                      00000000100 |                            00010
+         IC_READ_TAG_REQ |                      00000001000 |                            00011
+        IC_READ_TAG_WAIT |                      00000010000 |                            00100
+           IC_HASH_START |                      00000100000 |                            00101
+            IC_HASH_WAIT |                      00001000000 |                            00110
+        IC_WRITE_TAG_REQ |                      00010000000 |                            00111
+       IC_WRITE_TAG_WAIT |                      00100000000 |                            01000
+           IC_NEXT_LEVEL |                      01000000000 |                            01001
+                 IC_DONE |                      10000000000 |                            01010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'integritychecker_bmt'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+          AES_INIT_START |                             0001 |                               00
+           AES_INIT_WAIT |                             0010 |                               01
+               AES_READY |                             0100 |                               10
+                AES_BUSY |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'aes_ctr_nx128'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                 0000000000000001 |                            00000
+       S_WRITE_ALLOC_REQ |                 0000000000000010 |                            00111
+      S_WRITE_ALLOC_WAIT |                 0000000000000100 |                            01000
+   S_WRITE_ENCRYPT_START |                 0000000000001000 |                            01001
+    S_WRITE_ENCRYPT_WAIT |                 0000000000010000 |                            01010
+        S_WRITE_DATA_REQ |                 0000000000100000 |                            01011
+       S_WRITE_DATA_WAIT |                 0000000001000000 |                            01100
+        S_WRITE_IC_START |                 0000000010000000 |                            01101
+         S_WRITE_IC_WAIT |                 0000000100000000 |                            01110
+         S_READ_DATA_REQ |                 0000001000000000 |                            00001
+        S_READ_DATA_WAIT |                 0000010000000000 |                            00010
+         S_READ_IC_START |                 0000100000000000 |                            00011
+          S_READ_IC_WAIT |                 0001000000000000 |                            00100
+    S_READ_DECRYPT_START |                 0010000000000000 |                            00101
+     S_READ_DECRYPT_WAIT |                 0100000000000000 |                            00110
+               S_RESPOND |                 1000000000000000 |                            01111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'secure_memory_controller_serial_bmt'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2116.508 ; gain = 612.773 ; free physical = 44530 ; free virtual = 60131
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 1     
+	   2 Input   56 Bit       Adders := 4     
+	   2 Input   32 Bit       Adders := 11    
+	   3 Input   32 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 2     
+	  31 Input    6 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 15    
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 10    
+	   2 Input    1 Bit       Adders := 2     
++---XORs : 
+	   2 Input    512 Bit         XORs := 1     
+	   2 Input    128 Bit         XORs := 27    
+	   2 Input     32 Bit         XORs := 70    
+	   3 Input     32 Bit         XORs := 10    
+	   4 Input     32 Bit         XORs := 5     
+	   2 Input      8 Bit         XORs := 455   
+	   4 Input      8 Bit         XORs := 60    
+	   5 Input      8 Bit         XORs := 20    
+	   8 Input      8 Bit         XORs := 40    
+	   9 Input      8 Bit         XORs := 40    
++---Registers : 
+	              512 Bit    Registers := 16    
+	              128 Bit    Registers := 90    
+	               64 Bit    Registers := 2     
+	               56 Bit    Registers := 5     
+	               54 Bit    Registers := 8     
+	               32 Bit    Registers := 41    
+	                8 Bit    Registers := 5     
+	                4 Bit    Registers := 15    
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 10    
+	                1 Bit    Registers := 45    
++---Multipliers : 
+	               2x32  Multipliers := 2     
++---Muxes : 
+	   2 Input  512 Bit        Muxes := 57    
+	   4 Input  512 Bit        Muxes := 2     
+	   3 Input  512 Bit        Muxes := 2     
+	   7 Input  512 Bit        Muxes := 4     
+	  11 Input  512 Bit        Muxes := 2     
+	  16 Input  512 Bit        Muxes := 3     
+	   4 Input  128 Bit        Muxes := 1     
+	   2 Input  128 Bit        Muxes := 61    
+	   6 Input  128 Bit        Muxes := 1     
+	  11 Input  128 Bit        Muxes := 3     
+	  11 Input   64 Bit        Muxes := 1     
+	  16 Input   64 Bit        Muxes := 1     
+	   2 Input   56 Bit        Muxes := 11    
+	   7 Input   56 Bit        Muxes := 4     
+	  11 Input   56 Bit        Muxes := 2     
+	  16 Input   56 Bit        Muxes := 2     
+	   2 Input   54 Bit        Muxes := 26    
+	   4 Input   54 Bit        Muxes := 4     
+	   4 Input   32 Bit        Muxes := 10    
+	   5 Input   32 Bit        Muxes := 10    
+	   2 Input   32 Bit        Muxes := 89    
+	  11 Input   32 Bit        Muxes := 1     
+	  16 Input   16 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 5     
+	  11 Input   11 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 7     
+	   3 Input    8 Bit        Muxes := 5     
+	   7 Input    7 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 3     
+	   6 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 3     
+	   2 Input    5 Bit        Muxes := 2     
+	   4 Input    4 Bit        Muxes := 16    
+	   2 Input    4 Bit        Muxes := 71    
+	   3 Input    4 Bit        Muxes := 5     
+	   2 Input    3 Bit        Muxes := 22    
+	   4 Input    3 Bit        Muxes := 10    
+	   3 Input    3 Bit        Muxes := 5     
+	   6 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 2     
+	  11 Input    3 Bit        Muxes := 1     
+	  16 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 20    
+	   3 Input    2 Bit        Muxes := 2     
+	  11 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 350   
+	   4 Input    1 Bit        Muxes := 81    
+	   7 Input    1 Bit        Muxes := 8     
+	   8 Input    1 Bit        Muxes := 40    
+	   3 Input    1 Bit        Muxes := 30    
+	   6 Input    1 Bit        Muxes := 6     
+	  11 Input    1 Bit        Muxes := 11    
+	  16 Input    1 Bit        Muxes := 11    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 2327.473 ; gain = 823.738 ; free physical = 37840 ; free virtual = 53472
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-------------+------------+---------------+----------------+
+|Module Name  | RTL Object | Depth x Width | Implemented As | 
++-------------+------------+---------------+----------------+
+|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
+|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
+|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
+|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
+|aes_sbox     | sbox       | 256x8         | LUT            | 
+|aes_sbox     | sbox       | 256x8         | LUT            | 
+|aes_sbox     | sbox       | 256x8         | LUT            | 
+|aes_sbox     | sbox       | 256x8         | LUT            | 
++-------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__1.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__1.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__1.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__1.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__2.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__2.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__2.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__2.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__3.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__3.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__3.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__3.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__4.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__4.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__4.
+WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__4.
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:01:06 . Memory (MB): peak = 2331.559 ; gain = 827.824 ; free physical = 39988 ; free virtual = 55640
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:37 ; elapsed = 00:01:11 . Memory (MB): peak = 2343.484 ; gain = 839.750 ; free physical = 38956 ; free virtual = 54613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:42 ; elapsed = 00:01:16 . Memory (MB): peak = 2464.742 ; gain = 961.008 ; free physical = 38822 ; free virtual = 54502
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:43 ; elapsed = 00:01:16 . Memory (MB): peak = 2464.742 ; gain = 961.008 ; free physical = 38820 ; free virtual = 54500
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38804 ; free virtual = 54485
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:44 ; elapsed = 00:01:18 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |   126|
+|3     |LUT1   |     6|
+|4     |LUT2   |  3736|
+|5     |LUT3   |  5524|
+|6     |LUT4   |  3725|
+|7     |LUT5   |  3683|
+|8     |LUT6   | 10997|
+|9     |MUXF7  |   904|
+|10    |MUXF8  |   104|
+|11    |FDCE   | 20436|
+|12    |FDPE   |    46|
+|13    |IBUF   |  1715|
+|14    |OBUF   |  1655|
++------+-------+------+
+
+Report Instance Areas: 
++------+----------------------------------------+------------------------------------+------+
+|      |Instance                                |Module                              |Cells |
++------+----------------------------------------+------------------------------------+------+
+|1     |top                                     |                                    | 52658|
+|2     |  u_secure_memory_controller_serial_bmt |secure_memory_controller_serial_bmt | 49287|
+|3     |    u_integritychecker                  |integritychecker_bmt                |  9220|
+|4     |      u_hash_compare                    |bmt_hash_compare                    |  5179|
+|5     |        u_aes_core                      |aes_core_12                         |  4770|
+|6     |          enc_block                     |aes_encipher_block_13               |   587|
+|7     |          keymem                        |aes_key_mem_14                      |  3264|
+|8     |          sbox_inst                     |aes_sbox_15                         |    32|
+|9     |    u_metadata_controller               |metadata_controller_serial          | 17725|
+|10    |      u_cache                           |metadata_cache                      | 16013|
+|11    |    u_meu_ctr                           |meu_ctr_datapath                    | 19450|
+|12    |      u_ctr                             |aes_ctr_nx128                       | 17911|
+|13    |        \gen_aes_core[0].u_aes_core     |aes_core                            |  4360|
+|14    |          enc_block                     |aes_encipher_block_9                |   279|
+|15    |          keymem                        |aes_key_mem_10                      |  2999|
+|16    |          sbox_inst                     |aes_sbox_11                         |    84|
+|17    |        \gen_aes_core[1].u_aes_core     |aes_core_0                          |  4359|
+|18    |          enc_block                     |aes_encipher_block_6                |   278|
+|19    |          keymem                        |aes_key_mem_7                       |  2999|
+|20    |          sbox_inst                     |aes_sbox_8                          |    84|
+|21    |        \gen_aes_core[2].u_aes_core     |aes_core_1                          |  4363|
+|22    |          enc_block                     |aes_encipher_block_3                |   279|
+|23    |          keymem                        |aes_key_mem_4                       |  2999|
+|24    |          sbox_inst                     |aes_sbox_5                          |    84|
+|25    |        \gen_aes_core[3].u_aes_core     |aes_core_2                          |  4367|
+|26    |          enc_block                     |aes_encipher_block                  |   283|
+|27    |          keymem                        |aes_key_mem                         |  3000|
+|28    |          sbox_inst                     |aes_sbox                            |    84|
++------+----------------------------------------+------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:44 ; elapsed = 00:01:18 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38805 ; free virtual = 54485
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:44 ; elapsed = 00:01:19 . Memory (MB): peak = 2475.938 ; gain = 972.203 ; free physical = 44391 ; free virtual = 60071
+Synthesis Optimization Complete : Time (s): cpu = 00:01:44 ; elapsed = 00:01:19 . Memory (MB): peak = 2475.938 ; gain = 972.203 ; free physical = 44391 ; free virtual = 60064
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.19 ; elapsed = 00:00:00.19 . Memory (MB): peak = 2510.750 ; gain = 0.000 ; free physical = 44361 ; free virtual = 60034
+INFO: [Netlist 29-17] Analyzing 1134 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.125 ; gain = 0.000 ; free physical = 44243 ; free virtual = 59917
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 53d2c1c9
+INFO: [Common 17-83] Releasing license: Synthesis
+71 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:49 ; elapsed = 00:01:24 . Memory (MB): peak = 2635.125 ; gain = 1135.375 ; free physical = 44243 ; free virtual = 59915
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 8436.710; main = 1797.993; forked = 7051.547
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 15766.770; main = 2635.129; forked = 13443.203
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2651.133 ; gain = 0.000 ; free physical = 44242 ; free virtual = 59917
+INFO: [Common 17-1381] The checkpoint '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/secure_serial_clean_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file secure_serial_clean_top_utilization_synth.rpt -pb secure_serial_clean_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 11:11:23 2026...
