@@ -1,8 +1,4 @@
-# Run synthesis for TileLink-facing secure memory controller wrapper.
-# Usage:
-#   vivado -mode batch -source tcl/run_synth_fixed_encryption_tilelink.tcl
-# Optional:
-#   vivado -mode batch -source tcl/run_synth_fixed_encryption_tilelink.tcl -tclargs /path/to/project.xpr
+
 
 set script_dir [file dirname [file normalize [info script]]]
 set default_root [file normalize [file join $script_dir ..]]

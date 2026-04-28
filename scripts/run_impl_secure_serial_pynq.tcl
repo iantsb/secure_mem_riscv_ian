@@ -1,11 +1,3 @@
-# Run synthesis + implementation and write timing/utilization reports.
-#
-# Usage:
-#   vivado -mode batch -source tcl/run_impl_secure_serial_pynq.tcl
-#
-# Optional:
-#   vivado -mode batch -source tcl/run_impl_secure_serial_pynq.tcl \
-#     -tclargs /path/to/project.xpr
 
 set script_dir [file dirname [file normalize [info script]]]
 set root_dir   [file normalize [file join $script_dir ..]]

@@ -236,11 +236,7 @@ module memory_encryption_unit #(
         .keystream_o      (aes_keystream)
     );
 
-    // Build one AES counter block per 128-bit lane of the cache line.
-    // Format: {64-bit version/line counter, low address bits, 16-bit AES-lane index}.
-    // The real design should assign line_counter_q from metadata memory using
-    // smam_version_addr before entering MEU_AES_START. For now it remains a
-    // commented integration placeholder and the value is tied to zero in IDLE.
+
     always_comb begin
         ctr_blocks = '0;
         for (int i = 0; i < CHUNK_COUNT; i++) begin
@@ -288,11 +284,8 @@ module memory_encryption_unit #(
 
                     // --------------------------------------------------------------
                     // Counter fetch placeholder:
-                    //   Issue metadata/cache GET to smam_version_addr.
-                    //   Wait for metadata response.
-                    //   Assign line_counter_n from metadata response data.
-                    // For datapath bring-up only, the line counter is tied to zero.
-                    // Do not keep this for a secure repeated-write implementation.
+                    // THIS IS ONLY PRESENT IN TILELINK VERSION
+                    // meu_ctr_datapath solves this
                     // --------------------------------------------------------------
                     line_counter_n = 64'h0;
 

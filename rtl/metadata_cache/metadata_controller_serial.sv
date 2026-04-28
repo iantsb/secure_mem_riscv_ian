@@ -2,10 +2,8 @@
 
 import metadata_pkg::*;
 
-// Serial metadata controller/cache front-end for the first functional design.
-// It presents one metadata request port to secure_memory_controller/integritychecker.
-// Reads are served from metadata_cache when possible and from memory on miss.
-// Writes/allocations update the cache and are write-through to backing memory.
+// Serial metadata controller/cache front-end 
+
 module metadata_controller_serial #(
   parameter int PLEN           = 56,
   parameter int CACHELINE_BITS = 512,

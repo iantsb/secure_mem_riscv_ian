@@ -1,13 +1,4 @@
-# Run clean serialized secure-memory simulations.
-#
-# Usage from repo root:
-#   vivado -mode batch -source tcl/run_clean_serial_tb.tcl
-#
-# Optional:
-#   vivado -mode batch -source tcl/run_clean_serial_tb.tcl \
-#     -tclargs /absolute/path/to/fixed_encryption_clean.xpr
 
-# Close any accidentally open project, including in-memory projects.
 if {[llength [current_project -quiet]]} {
     close_project
 }
@@ -68,7 +59,6 @@ if {![file exists $tb_serial]} {
     exit 1
 }
 
-# Add testbench files to sim_1 if not already present.
 if {[llength [get_files -quiet $tb_counter]] == 0} {
     puts "Adding TB:"
     puts "  $tb_counter"
@@ -87,18 +77,12 @@ set_property file_type SystemVerilog [get_files $tb_serial]
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 
-# Save the project after modifying sim_1. Some Vivado flows require this before launch_simulation.
 #save_project
 
-# Remove stale behavioral sim state if it exists.
 catch {reset_simulation -simset sim_1 -mode behavioral}
 
-# --------------------------------------------------------------------
 # Test 1: metadata counter allocator unit test
-# --------------------------------------------------------------------
-puts "============================================================"
 puts "Running tb_metadata_counter_allocator"
-puts "============================================================"
 
 set_property top tb_metadata_counter_allocator [get_filesets sim_1]
 update_compile_order -fileset sim_1
@@ -109,12 +93,8 @@ close_sim
 
 catch {reset_simulation -simset sim_1 -mode behavioral}
 
-# --------------------------------------------------------------------
 # Test 2: clean serialized secure-memory integration test
-# --------------------------------------------------------------------
-puts "============================================================"
 puts "Running tb_secure_memory_serial_bmt"
-puts "============================================================"
 
 set_property top tb_secure_memory_serial_bmt [get_filesets sim_1]
 update_compile_order -fileset sim_1
@@ -123,9 +103,7 @@ launch_simulation -simset sim_1 -mode behavioral
 run all
 close_sim
 
-puts "============================================================"
 puts "All clean serial simulations completed."
-puts "============================================================"
 
 close_project
 exit 0

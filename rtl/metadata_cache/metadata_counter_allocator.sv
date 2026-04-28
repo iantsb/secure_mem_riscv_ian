@@ -2,15 +2,7 @@
 
 // Allocates the next metadata version/counter value for AES-CTR/BMT use.
 //
-// Policy for the initial functional implementation:
-//   * version == counter
-//   * stored value 0 means uninitialized/never allocated
-//   * first allocation returns 1
-//   * later allocations return old + 1
-//   * all-ones old value is overflow and is not allowed to wrap
-//
-// The allocator operates on one VERSION_W lane inside a CACHELINE_BITS metadata
-// line and returns the modified metadata line plus the allocated version.
+
 module metadata_counter_allocator #(
   parameter int CACHELINE_BITS = 512,
   parameter int VERSION_W      = 64
@@ -32,8 +24,7 @@ module metadata_counter_allocator #(
     old_version = line_i[lane_i*VERSION_W +: VERSION_W];
     overflow_o  = alloc_i && (&old_version);
 
-    // If old_version is 0, this also produces 1. Keeping the explicit policy
-    // here documents that 0 is reserved for uninitialized metadata.
+
     if (old_version == '0) begin
       new_version = {{(VERSION_W-1){1'b0}}, 1'b1};
     end else begin

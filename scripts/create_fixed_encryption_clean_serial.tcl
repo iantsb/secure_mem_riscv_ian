@@ -1,10 +1,5 @@
 # create_fixed_encryption_clean_serial.tcl
-# Creates a Vivado project for the clean serialized secure-memory datapath.
-# Usage from repo/project root:
 #   vivado -mode batch -source scripts/create_fixed_encryption_clean_serial.tcl
-# Optional overrides:
-#   vivado -mode batch -source scripts/create_fixed_encryption_clean_serial.tcl \
-#     -tclargs /path/to/repo fixed_encryption_clean ./vivado_projects xc7z020clg400-1
 
 set script_dir [file dirname [file normalize [info script]]]
 set default_root [file normalize [file join $script_dir ..]]
@@ -63,7 +58,6 @@ foreach f [concat $sv_files $v_files] {
 add_files -fileset sources_1 $sv_files
 add_files -fileset sources_1 $v_files
 
-# Force .sv files to SystemVerilog. Leave secworks AES .v files as Verilog.
 foreach f $sv_files {
   set_property file_type SystemVerilog [get_files $f]
 }
@@ -71,7 +65,7 @@ foreach f $sv_files {
 set_property top $TOP_MODULE [current_fileset]
 update_compile_order -fileset sources_1
 
-# Basic synthesis strategy; modify as desired.
+
 set_property strategy Flow_PerfOptimized_high [get_runs synth_1]
 
 puts "Created project: $PROJ_DIR/$PROJECT_NAME.xpr"

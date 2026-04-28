@@ -3,10 +3,7 @@
 import metadata_pkg::*;
 
 // Simple serial line-based secure memory controller.
-// This is intended as the first clean implementation layer below a TileLink adapter.
-// It serializes all operations:
-//   READ : data memory read -> BMT integrity check -> CTR decrypt -> response
-//   WRITE: allocate version -> CTR encrypt -> data memory write -> BMT tag update -> ack
+
 module secure_memory_controller_serial_bmt #(
   parameter int PLEN           = 56,
   parameter int CACHELINE_BITS = 512,

@@ -1,14 +1,7 @@
 `timescale 1ns/1ps
 
 // AES-CBC-MAC style Bonsai Merkle Tree node hash/compare.
-// This is not a placeholder XOR fold. It uses the secworks aes_core as a keyed
-// compression primitive:
-//   chain_0 = AES_K(header_block)
-//   chain_i = AES_K(chain_{i-1} ^ data_block_i)
-//   tag     = chain_last
-//
-// Read/verify: compare computed tag against expected_tag_i.
-// Write/update: computed_tag_o is the new metadata tag to store.
+
 module bmt_hash_compare #(
   parameter int ADDR_W    = 56,
   parameter int DATA_W    = 512,

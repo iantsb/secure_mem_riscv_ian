@@ -9,7 +9,6 @@ module tb_secure_memory_serial_bmt;
   localparam int TAG_W          = 128;
   localparam int MARY           = 8;
 
-  // Keep disabled until BMT parent/root tag propagation is implemented.
   localparam bit RUN_READ_AFTER_WRITE = 1'b0;
 
   logic clk_i;
@@ -84,7 +83,6 @@ module tb_secure_memory_serial_bmt;
     .meta_mem_rsp_error_i  (meta_mem_rsp_error_i)
   );
 
-  // Sparse backing memories keyed by cache-line address. Simulation only.
   logic [CACHELINE_BITS-1:0] data_mem [longint unsigned];
   logic [CACHELINE_BITS-1:0] meta_mem [longint unsigned];
 
@@ -105,7 +103,6 @@ module tb_secure_memory_serial_bmt;
   always #5 clk_i = ~clk_i;
 
   // Protected data memory model. Reads return one cycle after accepted request.
-  // Writes update memory immediately and acknowledge one cycle later.
   assign data_mem_req_ready_i = 1'b1;
 
   always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -140,8 +137,6 @@ module tb_secure_memory_serial_bmt;
   end
 
   // Metadata backing memory model. Reads return one cycle after accepted request.
-  // Writes update memory immediately. metadata_controller_serial does not wait for
-  // a write response, so no write response is generated.
   assign meta_mem_req_ready_i = 1'b1;
 
   always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -295,8 +290,6 @@ module tb_secure_memory_serial_bmt;
     begin
       $display("---- test_two_writes_increment_counter ----");
       addr = 56'h0000_0000_0000;
-      // Large NAPOT-like mask/base for topology math. addr[8:6] is 0, so the
-      // selected version lane is metadata line bits [63:0].
       mask = 56'h0000_000f_ffff;
       base = 56'h0;
       p0 = {8{64'h0123_4567_89ab_cdef}};

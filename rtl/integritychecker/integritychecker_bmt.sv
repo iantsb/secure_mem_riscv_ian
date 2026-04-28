@@ -4,14 +4,7 @@ import metadata_pkg::*;
 
 // Serial Bonsai Merkle Tree integrity checker.
 //
-// The checker owns BMT validation and tag generation. It uses securememory_topology
-// to derive version/counter and tag metadata addresses. The first implementation is
-// intentionally serial: it fetches metadata, runs one AES-based hash compare, then
-// advances to the next BMT level.
-//
-// Naming convention preserved from the original code/paper:
-//   version == counter
-//   tag     == integrity tag
+
 module integritychecker_bmt #(
   parameter int PLEN           = 56,
   parameter int CACHELINE_BITS = 512,

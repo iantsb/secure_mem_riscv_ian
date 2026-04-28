@@ -1,8 +1,4 @@
-# Create Vivado project for TileLink-facing secure memory controller wrapper.
-# Usage:
-#   vivado -mode batch -source tcl/create_fixed_encryption_tilelink.tcl
-# Optional:
-#   vivado -mode batch -source tcl/create_fixed_encryption_tilelink.tcl -tclargs /path/to/repo xc7z020clg400-1
+
 
 set script_dir [file dirname [file normalize [info script]]]
 set default_root [file normalize [file join $script_dir ..]]
@@ -56,17 +52,14 @@ add_sv_optional [file join $RTL_DIR packages metadata_pkg.sv]
 add_sv_optional [file join $RTL_DIR packages cf_math_pkg.sv]
 add_sv_required [file join $RTL_DIR packages build_config_pkg.sv]
 
-# Common support. csr_regfile and fp_arb are expected here.
 add_sv_optional [file join $RTL_DIR common cf_math_pkg.sv]
 add_sv_optional [file join $RTL_DIR common lzc.sv]
 add_sv_required [file join $RTL_DIR common csr_regfile.sv]
 add_sv_optional [file join $RTL_DIR common fp_arb.sv]
 
-# ePMP sources are expected in rtl/epmp.
 add_sv_required [file join $RTL_DIR epmp epmp_entry.sv]
 add_sv_required [file join $RTL_DIR epmp epmp.sv]
 
-# TileLink helper material is expected in rtl/tilelink.
 add_sv_optional [file join $RTL_DIR tilelink ztl_assembler.sv]
 add_sv_optional [file join $RTL_DIR tilelink ztl_fragmenter.sv]
 add_sv_required [file join $RTL_DIR tilelink ztl_passthrough_width_adapter.sv]
@@ -78,12 +71,10 @@ add_sv_optional [file join $RTL_DIR tilelink tlbuffer_d.sv]
 add_sv_optional [file join $RTL_DIR tilelink tldispatcher_a.sv]
 add_sv_optional [file join $RTL_DIR tilelink tldispatcher_d.sv]
 
-# Original TileLink-facing controller path.
 add_sv_required [file join $RTL_DIR memory-controller secure_memory_controller.sv]
 add_sv_optional [file join $RTL_DIR memory-controller memory_controller.sv]
 add_sv_optional [file join $RTL_DIR memory-controller memory_bus.sv]
 
-# Metadata / integrity / MEU blocks. Some are optional depending on which secure_memory_controller version is used.
 add_sv_optional [file join $RTL_DIR topology securememory_topology.sv]
 add_sv_optional [file join $RTL_DIR topology securememory_topology_clean.sv]
 add_sv_optional [file join $RTL_DIR metadata_cache metadata_cache.sv]
@@ -98,7 +89,6 @@ add_sv_optional [file join $RTL_DIR integritychecker bmt_hash_compare.sv]
 add_sv_optional [file join $RTL_DIR memory-controller secure_memory_controller_serial_bmt.sv]
 add_sv_optional [file join $RTL_DIR memory-controller sm_addr_mapper.sv]
 
-# AES files are expected in rtl/aes.
 add_v_required [file join $AES_DIR aes_core.v]
 add_v_required [file join $AES_DIR aes_key_mem.v]
 add_v_required [file join $AES_DIR aes_encipher_block.v]
@@ -106,7 +96,6 @@ add_v_required [file join $AES_DIR aes_decipher_block.v]
 add_v_required [file join $AES_DIR aes_sbox.v]
 add_v_required [file join $AES_DIR aes_inv_sbox.v]
 
-# Patched Vivado top/wrapper.
 add_sv_required [file join $RTL_DIR top MemoryControllerWrapperTL.sv]
 
 update_compile_order -fileset sources_1

@@ -1,10 +1,6 @@
 `default_nettype none
 
 // CTR keystream generator using the secworks/aes aes_core.
-// Include these secworks files in your compile list:
-//   aes_core.v aes_key_mem.v aes_encipher_block.v aes_decipher_block.v aes_sbox.v aes_inv_sbox.v
-// Even though CTR uses only AES encrypt, aes_core.v from master instantiates both enc/dec paths.
-// CTR keystream generator using the secworks/aes aes_core.
 
 module aes_ctr_nx128 #(
     parameter int DATA_WIDTH  = 512,
@@ -52,7 +48,7 @@ module aes_ctr_nx128 #(
             aes_core u_aes_core (
                 .clk          (clk_i),
                 .reset_n      (rst_ni),
-                .encdec       (1'b1),       // encipher. CTR decrypt also uses AES encrypt.
+                .encdec       (1'b1),      
                 .init         (init_core),
                 .next         (next_core),
                 .ready        (ready_core[i]),

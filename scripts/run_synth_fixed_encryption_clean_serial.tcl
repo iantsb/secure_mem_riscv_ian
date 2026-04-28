@@ -1,10 +1,3 @@
-# run_synth_fixed_encryption_clean_serial.tcl
-# Runs synthesis and writes timing/utilization reports for the clean serialized datapath.
-# Usage:
-#   vivado -mode batch -source scripts/run_synth_fixed_encryption_clean_serial.tcl
-# Optional overrides:
-#   vivado -mode batch -source scripts/run_synth_fixed_encryption_clean_serial.tcl \
-#     -tclargs ./vivado_projects/fixed_encryption_clean/fixed_encryption_clean.xpr
 
 set script_dir [file dirname [file normalize [info script]]]
 set default_root [file normalize [file join $script_dir ..]]
