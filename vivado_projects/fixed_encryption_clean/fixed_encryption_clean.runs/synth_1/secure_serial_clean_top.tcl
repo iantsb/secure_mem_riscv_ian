@@ -66,6 +66,7 @@ set_property webtalk.parent_dir /home/ian/amdFPGA/projects/secure_mem_riscv_ian/
 set_property parent.project_path /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_output_repo /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
@@ -78,6 +79,7 @@ read_verilog -library xil_defaultlib -sv {
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/common/lzc.sv
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv
+  /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_counter_allocator.sv
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-encryption-unit/meu_ctr_datapath.sv
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-controller/secure_memory_controller_serial_bmt.sv
   /home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/topology/securememory_topology_clean.sv
@@ -101,6 +103,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.srcs/utils_1/imports/synth_1/secure_serial_clean_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

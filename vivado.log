@@ -3,47 +3,50 @@
 # SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Mon Apr 27 11:09:40 2026
-# Process ID         : 147431
+# Start of session at: Mon Apr 27 16:17:13 2026
+# Process ID         : 219437
 # Current directory  : /home/ian/amdFPGA/projects/secure_mem_riscv_ian
-# Command line       : vivado -mode batch -source scripts/run_synth_fixed_encryption_clean_serial.tcl
+# Command line       : vivado -mode batch -source scripts/run_impl_secure_serial_pynq.tcl
 # Log file           : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado.log
 # Journal file       : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado.jou
 # Running On         : lhotse
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700H
-# CPU Frequency      : 2449.737 MHz
+# CPU Frequency      : 590.115 MHz
 # CPU Physical cores : 14
 # CPU Logical cores  : 20
 # Host memory        : 67094 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 75684 MB
-# Available Virtual  : 65030 MB
+# Available Virtual  : 59179 MB
 #-----------------------------------------------------------
-source scripts/run_synth_fixed_encryption_clean_serial.tcl
+source scripts/run_impl_secure_serial_pynq.tcl
 # set script_dir [file dirname [file normalize [info script]]]
-# set default_root [file normalize [file join $script_dir ..]]
-# set default_xpr  [file join $default_root vivado_projects fixed_encryption_clean fixed_encryption_clean.xpr]
-# set XPR_PATH $default_xpr
-# if {$argc >= 1} { set XPR_PATH [file normalize [lindex $argv 0]] }
-# if {![file exists $XPR_PATH]} {
-#   puts "ERROR: project not found: $XPR_PATH"
-#   puts "Run create_fixed_encryption_clean_serial.tcl first, or pass the .xpr path as -tclargs."
-#   exit 1
+# set root_dir   [file normalize [file join $script_dir ..]]
+# set default_xpr [file normalize [file join $root_dir vivado_projects fixed_encryption_clean fixed_encryption_clean.xpr]]
+# set xpr_path $default_xpr
+# if {$argc >= 1} {
+#     set xpr_path [file normalize [lindex $argv 0]]
 # }
-# open_project $XPR_PATH
+# if {![file exists $xpr_path]} {
+#     puts "ERROR: project not found:"
+#     puts "  $xpr_path"
+#     exit 1
+# }
+# open_project $xpr_path
 INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.gen/sources_1'.
 Scanning sources...
 Finished scanning sources
 # update_compile_order -fileset sources_1
 # reset_run synth_1
+INFO: [Project 1-1160] Copying file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/secure_serial_clean_top.dcp to /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.srcs/utils_1/imports/synth_1 and adding it to utils fileset
+# reset_run impl_1
 # launch_runs synth_1 -jobs 4
-WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
-[Mon Apr 27 11:09:48 2026] Launched synth_1...
+[Mon Apr 27 16:17:21 2026] Launched synth_1...
 Run output will be captured here: /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/runme.log
 # wait_on_run synth_1
-[Mon Apr 27 11:09:48 2026] Waiting for synth_1 to finish...
+[Mon Apr 27 16:17:21 2026] Waiting for synth_1 to finish...
 
 *** Running vivado
     with args -log secure_serial_clean_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source secure_serial_clean_top.tcl
@@ -53,20 +56,23 @@ Run output will be captured here: /home/ian/amdFPGA/projects/secure_mem_riscv_ia
   **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Mon Apr 27 11:09:49 2026
+  **** Start of session at: Mon Apr 27 16:17:23 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source secure_serial_clean_top.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.srcs/utils_1/imports/synth_1/secure_serial_clean_top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.srcs/utils_1/imports/synth_1/secure_serial_clean_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top secure_serial_clean_top -part xc7z020clg400-1 -directive PerformanceOptimized -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 147616
+INFO: [Synth 8-7075] Helper process launched with PID 219674
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1948.605 ; gain = 444.871 ; free physical = 44692 ; free virtual = 60288
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1952.625 ; gain = 437.660 ; free physical = 29027 ; free virtual = 54668
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'secure_serial_clean_top' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/top/secure_serial_clean_top.sv:7]
 INFO: [Synth 8-6157] synthesizing module 'secure_memory_controller_serial_bmt' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/memory-controller/secure_memory_controller_serial_bmt.sv:10]
@@ -95,7 +101,11 @@ INFO: [Synth 8-6157] synthesizing module 'metadata_cache' [/home/ian/amdFPGA/pro
 	Parameter CACHE_LINES bound to: 32'sb00000000000000000000000000001000 
 	Parameter NUM_WAYS bound to: 32'sb00000000000000000000000000000010 
 INFO: [Synth 8-6155] done synthesizing module 'metadata_cache' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_cache.sv:3]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:177]
+INFO: [Synth 8-6157] synthesizing module 'metadata_counter_allocator' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_counter_allocator.sv:14]
+	Parameter CACHELINE_BITS bound to: 32'sb00000000000000000000001000000000 
+	Parameter VERSION_W bound to: 32'sb00000000000000000000000001000000 
+INFO: [Synth 8-6155] done synthesizing module 'metadata_counter_allocator' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_counter_allocator.sv:14]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:196]
 INFO: [Synth 8-6155] done synthesizing module 'metadata_controller_serial' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/metadata_cache/metadata_controller_serial.sv:9]
 INFO: [Synth 8-6157] synthesizing module 'integritychecker_bmt' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:15]
 	Parameter PLEN bound to: 32'sb00000000000000000000000000111000 
@@ -127,7 +137,7 @@ INFO: [Synth 8-6155] done synthesizing module 'aes_key_mem' (0#1) [/home/ian/amd
 INFO: [Synth 8-6157] synthesizing module 'aes_sbox' [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_sbox.v:42]
 INFO: [Synth 8-6155] done synthesizing module 'aes_sbox' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_sbox.v:42]
 INFO: [Synth 8-6155] done synthesizing module 'aes_core' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/aes/aes_core.v:42]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:126]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:137]
 INFO: [Synth 8-6155] done synthesizing module 'bmt_hash_compare' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/bmt_hash_compare.sv:12]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:191]
 INFO: [Synth 8-6155] done synthesizing module 'integritychecker_bmt' (0#1) [/home/ian/amdFPGA/projects/secure_mem_riscv_ian/rtl/integritychecker/integritychecker_bmt.sv:15]
@@ -167,10 +177,10 @@ WARNING: [Synth 8-7129] Port addr_i[44] in module meu_ctr_datapath is either unc
 WARNING: [Synth 8-7129] Port addr_i[43] in module meu_ctr_datapath is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr_i[42] in module meu_ctr_datapath is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2075.574 ; gain = 571.840 ; free physical = 44525 ; free virtual = 60123
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2077.594 ; gain = 562.629 ; free physical = 28861 ; free virtual = 54505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2084.480 ; gain = 580.746 ; free physical = 44524 ; free virtual = 60122
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2089.469 ; gain = 574.504 ; free physical = 28833 ; free virtual = 54480
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -178,219 +188,83 @@ Start Loading Part and Timing Information
 Loading part: xc7z020clg400-1
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2092.484 ; gain = 588.750 ; free physical = 44524 ; free virtual = 60122
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2097.473 ; gain = 582.508 ; free physical = 28833 ; free virtual = 54480
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'metadata_controller_serial'
-INFO: [Synth 8-802] inferred FSM for state register 'enc_ctrl_reg_reg' in module 'aes_encipher_block'
-INFO: [Synth 8-802] inferred FSM for state register 'dec_ctrl_reg_reg' in module 'aes_decipher_block'
-INFO: [Synth 8-802] inferred FSM for state register 'key_mem_ctrl_reg_reg' in module 'aes_key_mem'
-INFO: [Synth 8-802] inferred FSM for state register 'aes_core_ctrl_reg_reg' in module 'aes_core'
-INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'bmt_hash_compare'
-INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'integritychecker_bmt'
-INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'aes_ctr_nx128'
-INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'secure_memory_controller_serial_bmt'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                 MD_IDLE |                          0000001 |                             0000
-               MD_LOOKUP |                          0000010 |                             0001
-         MD_MEM_READ_REQ |                          0000100 |                             0010
-        MD_MEM_READ_WAIT |                          0001000 |                             0011
-               MD_MODIFY |                          0010000 |                             0100
-        MD_MEM_WRITE_REQ |                          0100000 |                             0101
-              MD_RESPOND |                          1000000 |                             0110
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'metadata_controller_serial'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-               CTRL_IDLE |                             0001 |                               00
-               CTRL_INIT |                             0010 |                               01
-               CTRL_SBOX |                             0100 |                               10
-               CTRL_MAIN |                             1000 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'enc_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_encipher_block'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-               CTRL_IDLE |                             0001 |                               00
-               CTRL_INIT |                             0010 |                               01
-               CTRL_SBOX |                             0100 |                               10
-               CTRL_MAIN |                             1000 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'dec_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_decipher_block'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-               CTRL_IDLE |                             0001 |                              000
-               CTRL_INIT |                             0010 |                              001
-           CTRL_GENERATE |                             0100 |                              010
-               CTRL_DONE |                             1000 |                              011
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'key_mem_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_key_mem'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-               CTRL_IDLE |                              001 |                               00
-               CTRL_INIT |                              010 |                               01
-               CTRL_NEXT |                              100 |                               10
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'aes_core_ctrl_reg_reg' using encoding 'one-hot' in module 'aes_core'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-           HC_INIT_START |                           000001 |                              000
-            HC_INIT_WAIT |                           000010 |                              001
-                HC_READY |                           000100 |                              010
-               HC_LAUNCH |                           001000 |                              011
-                 HC_WAIT |                           010000 |                              100
-                 HC_DONE |                           100000 |                              101
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'bmt_hash_compare'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                 IC_IDLE |                      00000000001 |                            00000
-     IC_READ_VERSION_REQ |                      00000000010 |                            00001
-    IC_READ_VERSION_WAIT |                      00000000100 |                            00010
-         IC_READ_TAG_REQ |                      00000001000 |                            00011
-        IC_READ_TAG_WAIT |                      00000010000 |                            00100
-           IC_HASH_START |                      00000100000 |                            00101
-            IC_HASH_WAIT |                      00001000000 |                            00110
-        IC_WRITE_TAG_REQ |                      00010000000 |                            00111
-       IC_WRITE_TAG_WAIT |                      00100000000 |                            01000
-           IC_NEXT_LEVEL |                      01000000000 |                            01001
-                 IC_DONE |                      10000000000 |                            01010
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'integritychecker_bmt'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-          AES_INIT_START |                             0001 |                               00
-           AES_INIT_WAIT |                             0010 |                               01
-               AES_READY |                             0100 |                               10
-                AES_BUSY |                             1000 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'aes_ctr_nx128'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                  S_IDLE |                 0000000000000001 |                            00000
-       S_WRITE_ALLOC_REQ |                 0000000000000010 |                            00111
-      S_WRITE_ALLOC_WAIT |                 0000000000000100 |                            01000
-   S_WRITE_ENCRYPT_START |                 0000000000001000 |                            01001
-    S_WRITE_ENCRYPT_WAIT |                 0000000000010000 |                            01010
-        S_WRITE_DATA_REQ |                 0000000000100000 |                            01011
-       S_WRITE_DATA_WAIT |                 0000000001000000 |                            01100
-        S_WRITE_IC_START |                 0000000010000000 |                            01101
-         S_WRITE_IC_WAIT |                 0000000100000000 |                            01110
-         S_READ_DATA_REQ |                 0000001000000000 |                            00001
-        S_READ_DATA_WAIT |                 0000010000000000 |                            00010
-         S_READ_IC_START |                 0000100000000000 |                            00011
-          S_READ_IC_WAIT |                 0001000000000000 |                            00100
-    S_READ_DECRYPT_START |                 0010000000000000 |                            00101
-     S_READ_DECRYPT_WAIT |                 0100000000000000 |                            00110
-               S_RESPOND |                 1000000000000000 |                            01111
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'secure_memory_controller_serial_bmt'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2116.508 ; gain = 612.773 ; free physical = 44530 ; free virtual = 60131
+Start Preparing Guide Design
 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2097.473 ; gain = 582.508 ; free physical = 28801 ; free virtual = 54452
+---------------------------------------------------------------------------------
+secure_memory_controller_serial_bmt__GC0meu_ctr_datapath__GC0aes_ctr_nx128__GC0integritychecker_bmt__GC0bmt_hash_compare__GC0aes_coremetadata_controller_serial__GC0metadata_cache__GB1metadata_cache__GB0---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2097.473 ; gain = 582.508 ; free physical = 28825 ; free virtual = 54477
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2097.473 ; gain = 582.508 ; free physical = 28824 ; free virtual = 54476
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Mimic Skeleton from Reference
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Mimic Skeleton from Reference : Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2097.473 ; gain = 582.508 ; free physical = 28821 ; free virtual = 54474
+---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: yes
+
+   Stitch points used : changed
+
+
+2. Change Summary
+
+Report Incremental Modules: 
++-+----------------+------------+----------+----------+
+| |Changed Modules |Replication |Instances |Changed % |
++-+----------------+------------+----------+----------+
++-+----------------+------------+----------+----------+
+
+
+   Full Design Size (number of cells) : 193525
+   Resynthesis Design Size (number of cells) : 0
+   Resynth % : 0.0000,  Reuse % : 100.0000
+
+3. Reference Checkpoint Information
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DCP Location:  | /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.srcs/utils_1/imports/synth_1/secure_serial_clean_top.dcp |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------+------------------------------+
+|         DCP Information        |             Value            |
++--------------------------------+------------------------------+
+| Vivado Version                 |                    v2024.2 |
+| DCP State                      |                              |
++--------------------------------+------------------------------+
+
+
+
+Report RTL Partitions: 
++------+-------------------------------------------------+------------+----------+
+|      |RTL Partition                                    |Replication |Instances |
++------+-------------------------------------------------+------------+----------+
+|1     |metadata_cache__GB0_#REUSE#                      |           1|         0|
+|2     |metadata_cache__GB1_#REUSE#                      |           1|         0|
+|3     |metadata_controller_serial__GC0_#REUSE#          |           1|         0|
+|4     |aes_core_#REUSE#                                 |           5|         0|
+|5     |bmt_hash_compare__GC0_#REUSE#                    |           1|         0|
+|6     |integritychecker_bmt__GC0_#REUSE#                |           1|         0|
+|7     |aes_ctr_nx128__GC0_#REUSE#                       |           1|         0|
+|8     |meu_ctr_datapath__GC0_#REUSE#                    |           1|         0|
+|9     |secure_memory_controller_serial_bmt__GC0_#REUSE# |           1|         0|
++------+-------------------------------------------------+------------+----------+
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input   64 Bit       Adders := 1     
-	   2 Input   56 Bit       Adders := 4     
-	   2 Input   32 Bit       Adders := 11    
-	   3 Input   32 Bit       Adders := 2     
-	   2 Input    7 Bit       Adders := 2     
-	  31 Input    6 Bit       Adders := 2     
-	   2 Input    4 Bit       Adders := 15    
-	   2 Input    3 Bit       Adders := 1     
-	   2 Input    2 Bit       Adders := 10    
-	   2 Input    1 Bit       Adders := 2     
-+---XORs : 
-	   2 Input    512 Bit         XORs := 1     
-	   2 Input    128 Bit         XORs := 27    
-	   2 Input     32 Bit         XORs := 70    
-	   3 Input     32 Bit         XORs := 10    
-	   4 Input     32 Bit         XORs := 5     
-	   2 Input      8 Bit         XORs := 455   
-	   4 Input      8 Bit         XORs := 60    
-	   5 Input      8 Bit         XORs := 20    
-	   8 Input      8 Bit         XORs := 40    
-	   9 Input      8 Bit         XORs := 40    
-+---Registers : 
-	              512 Bit    Registers := 16    
-	              128 Bit    Registers := 90    
-	               64 Bit    Registers := 2     
-	               56 Bit    Registers := 5     
-	               54 Bit    Registers := 8     
-	               32 Bit    Registers := 41    
-	                8 Bit    Registers := 5     
-	                4 Bit    Registers := 15    
-	                3 Bit    Registers := 3     
-	                2 Bit    Registers := 10    
-	                1 Bit    Registers := 45    
-+---Multipliers : 
-	               2x32  Multipliers := 2     
-+---Muxes : 
-	   2 Input  512 Bit        Muxes := 57    
-	   4 Input  512 Bit        Muxes := 2     
-	   3 Input  512 Bit        Muxes := 2     
-	   7 Input  512 Bit        Muxes := 4     
-	  11 Input  512 Bit        Muxes := 2     
-	  16 Input  512 Bit        Muxes := 3     
-	   4 Input  128 Bit        Muxes := 1     
-	   2 Input  128 Bit        Muxes := 61    
-	   6 Input  128 Bit        Muxes := 1     
-	  11 Input  128 Bit        Muxes := 3     
-	  11 Input   64 Bit        Muxes := 1     
-	  16 Input   64 Bit        Muxes := 1     
-	   2 Input   56 Bit        Muxes := 11    
-	   7 Input   56 Bit        Muxes := 4     
-	  11 Input   56 Bit        Muxes := 2     
-	  16 Input   56 Bit        Muxes := 2     
-	   2 Input   54 Bit        Muxes := 26    
-	   4 Input   54 Bit        Muxes := 4     
-	   4 Input   32 Bit        Muxes := 10    
-	   5 Input   32 Bit        Muxes := 10    
-	   2 Input   32 Bit        Muxes := 89    
-	  11 Input   32 Bit        Muxes := 1     
-	  16 Input   16 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 5     
-	  11 Input   11 Bit        Muxes := 1     
-	   2 Input   11 Bit        Muxes := 7     
-	   3 Input    8 Bit        Muxes := 5     
-	   7 Input    7 Bit        Muxes := 1     
-	   2 Input    7 Bit        Muxes := 3     
-	   6 Input    6 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 3     
-	   2 Input    5 Bit        Muxes := 2     
-	   4 Input    4 Bit        Muxes := 16    
-	   2 Input    4 Bit        Muxes := 71    
-	   3 Input    4 Bit        Muxes := 5     
-	   2 Input    3 Bit        Muxes := 22    
-	   4 Input    3 Bit        Muxes := 10    
-	   3 Input    3 Bit        Muxes := 5     
-	   6 Input    3 Bit        Muxes := 1     
-	   5 Input    3 Bit        Muxes := 2     
-	  11 Input    3 Bit        Muxes := 1     
-	  16 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 20    
-	   3 Input    2 Bit        Muxes := 2     
-	  11 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 350   
-	   4 Input    1 Bit        Muxes := 81    
-	   7 Input    1 Bit        Muxes := 8     
-	   8 Input    1 Bit        Muxes := 40    
-	   3 Input    1 Bit        Muxes := 30    
-	   6 Input    1 Bit        Muxes := 6     
-	  11 Input    1 Bit        Muxes := 11    
-	  16 Input    1 Bit        Muxes := 11    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -403,65 +277,41 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
+No constraint files found.
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7077] IncrSyn: subsequent runs will still be incremental as the reference run was parallel and that data is reused
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 2327.473 ; gain = 823.738 ; free physical = 37840 ; free virtual = 53472
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-ROM: Preliminary Mapping Report
-+-------------+------------+---------------+----------------+
-|Module Name  | RTL Object | Depth x Width | Implemented As | 
-+-------------+------------+---------------+----------------+
-|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
-|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
-|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
-|aes_inv_sbox | inv_sbox   | 256x8         | LUT            | 
-|aes_sbox     | sbox       | 256x8         | LUT            | 
-|aes_sbox     | sbox       | 256x8         | LUT            | 
-|aes_sbox     | sbox       | 256x8         | LUT            | 
-|aes_sbox     | sbox       | 256x8         | LUT            | 
-+-------------+------------+---------------+----------------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 2204.191 ; gain = 689.227 ; free physical = 28693 ; free virtual = 54375
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
+Start Stitch Unchanged AreaOpt Partitions
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Stitch Unchanged AreaOpt Partitions : Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2248.004 ; gain = 733.039 ; free physical = 28653 ; free virtual = 54344
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__1.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__1.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__1.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__1.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__2.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__2.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__2.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__2.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__3.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__3.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__3.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__3.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[3]) is unused and will be removed from module aes_core__4.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[2]) is unused and will be removed from module aes_core__4.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[1]) is unused and will be removed from module aes_core__4.
-WARNING: [Synth 8-3332] Sequential element (dec_block/FSM_onehot_dec_ctrl_reg_reg[0]) is unused and will be removed from module aes_core__4.
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:01:06 . Memory (MB): peak = 2331.559 ; gain = 827.824 ; free physical = 39988 ; free virtual = 55640
+Finished Timing Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 2266.004 ; gain = 751.039 ; free physical = 28620 ; free virtual = 54337
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7077] IncrSyn: subsequent runs will still be incremental as the reference run was parallel and that data is reused
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:37 ; elapsed = 00:01:11 . Memory (MB): peak = 2343.484 ; gain = 839.750 ; free physical = 38956 ; free virtual = 54613
+Finished Technology Mapping : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 2277.152 ; gain = 762.188 ; free physical = 28601 ; free virtual = 54323
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Stitch Unchanged Partitions
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Stitch Unchanged Partitions : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 2277.152 ; gain = 762.188 ; free physical = 28602 ; free virtual = 54325
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -479,37 +329,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:42 ; elapsed = 00:01:16 . Memory (MB): peak = 2464.742 ; gain = 961.008 ; free physical = 38822 ; free virtual = 54502
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:12 . Memory (MB): peak = 2435.285 ; gain = 920.320 ; free physical = 28334 ; free virtual = 54237
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:43 ; elapsed = 00:01:16 . Memory (MB): peak = 2464.742 ; gain = 961.008 ; free physical = 38820 ; free virtual = 54500
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:12 . Memory (MB): peak = 2435.285 ; gain = 920.320 ; free physical = 28334 ; free virtual = 54238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38804 ; free virtual = 54485
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28154 ; free virtual = 54206
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28107 ; free virtual = 54197
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:44 ; elapsed = 00:01:17 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28067 ; free virtual = 54193
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:44 ; elapsed = 00:01:18 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38806 ; free virtual = 54485
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28068 ; free virtual = 54196
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -528,14 +378,14 @@ Report Cell Usage:
 |1     |BUFG   |     1|
 |2     |CARRY4 |   126|
 |3     |LUT1   |     6|
-|4     |LUT2   |  3736|
-|5     |LUT3   |  5524|
-|6     |LUT4   |  3725|
-|7     |LUT5   |  3683|
-|8     |LUT6   | 10997|
+|4     |LUT2   |  3745|
+|5     |LUT3   |  5626|
+|6     |LUT4   |  3719|
+|7     |LUT5   |  3686|
+|8     |LUT6   | 12186|
 |9     |MUXF7  |   904|
 |10    |MUXF8  |   104|
-|11    |FDCE   | 20436|
+|11    |FDCE   | 20464|
 |12    |FDPE   |    46|
 |13    |IBUF   |  1715|
 |14    |OBUF   |  1655|
@@ -545,102 +395,429 @@ Report Instance Areas:
 +------+----------------------------------------+------------------------------------+------+
 |      |Instance                                |Module                              |Cells |
 +------+----------------------------------------+------------------------------------+------+
-|1     |top                                     |                                    | 52658|
-|2     |  u_secure_memory_controller_serial_bmt |secure_memory_controller_serial_bmt | 49287|
-|3     |    u_integritychecker                  |integritychecker_bmt                |  9220|
-|4     |      u_hash_compare                    |bmt_hash_compare                    |  5179|
-|5     |        u_aes_core                      |aes_core_12                         |  4770|
-|6     |          enc_block                     |aes_encipher_block_13               |   587|
-|7     |          keymem                        |aes_key_mem_14                      |  3264|
+|1     |top                                     |                                    | 53983|
+|2     |  u_secure_memory_controller_serial_bmt |secure_memory_controller_serial_bmt | 50612|
+|3     |    u_integritychecker                  |integritychecker_bmt                |  9308|
+|4     |      u_hash_compare                    |bmt_hash_compare                    |  5177|
+|5     |        u_aes_core                      |aes_core_12                         |  4768|
+|6     |          enc_block                     |aes_encipher_block_13               |   585|
+|7     |          keymem                        |aes_key_mem_14                      |  3266|
 |8     |          sbox_inst                     |aes_sbox_15                         |    32|
-|9     |    u_metadata_controller               |metadata_controller_serial          | 17725|
-|10    |      u_cache                           |metadata_cache                      | 16013|
-|11    |    u_meu_ctr                           |meu_ctr_datapath                    | 19450|
-|12    |      u_ctr                             |aes_ctr_nx128                       | 17911|
-|13    |        \gen_aes_core[0].u_aes_core     |aes_core                            |  4360|
-|14    |          enc_block                     |aes_encipher_block_9                |   279|
+|9     |    u_metadata_controller               |metadata_controller_serial          | 18968|
+|10    |      u_cache                           |metadata_cache                      | 16016|
+|11    |    u_meu_ctr                           |meu_ctr_datapath                    | 19446|
+|12    |      u_ctr                             |aes_ctr_nx128                       | 17907|
+|13    |        \gen_aes_core[0].u_aes_core     |aes_core                            |  4363|
+|14    |          enc_block                     |aes_encipher_block_9                |   282|
 |15    |          keymem                        |aes_key_mem_10                      |  2999|
 |16    |          sbox_inst                     |aes_sbox_11                         |    84|
 |17    |        \gen_aes_core[1].u_aes_core     |aes_core_0                          |  4359|
 |18    |          enc_block                     |aes_encipher_block_6                |   278|
 |19    |          keymem                        |aes_key_mem_7                       |  2999|
 |20    |          sbox_inst                     |aes_sbox_8                          |    84|
-|21    |        \gen_aes_core[2].u_aes_core     |aes_core_1                          |  4363|
+|21    |        \gen_aes_core[2].u_aes_core     |aes_core_1                          |  4364|
 |22    |          enc_block                     |aes_encipher_block_3                |   279|
-|23    |          keymem                        |aes_key_mem_4                       |  2999|
+|23    |          keymem                        |aes_key_mem_4                       |  3000|
 |24    |          sbox_inst                     |aes_sbox_5                          |    84|
-|25    |        \gen_aes_core[3].u_aes_core     |aes_core_2                          |  4367|
-|26    |          enc_block                     |aes_encipher_block                  |   283|
-|27    |          keymem                        |aes_key_mem                         |  3000|
+|25    |        \gen_aes_core[3].u_aes_core     |aes_core_2                          |  4359|
+|26    |          enc_block                     |aes_encipher_block                  |   278|
+|27    |          keymem                        |aes_key_mem                         |  2999|
 |28    |          sbox_inst                     |aes_sbox                            |    84|
 +------+----------------------------------------+------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:44 ; elapsed = 00:01:18 . Memory (MB): peak = 2472.023 ; gain = 968.289 ; free physical = 38805 ; free virtual = 54485
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28062 ; free virtual = 54190
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:44 ; elapsed = 00:01:19 . Memory (MB): peak = 2475.938 ; gain = 972.203 ; free physical = 44391 ; free virtual = 60071
-Synthesis Optimization Complete : Time (s): cpu = 00:01:44 ; elapsed = 00:01:19 . Memory (MB): peak = 2475.938 ; gain = 972.203 ; free physical = 44391 ; free virtual = 60064
+Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.566 ; gain = 927.602 ; free physical = 28054 ; free virtual = 54182
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2442.574 ; gain = 927.602 ; free physical = 28054 ; free virtual = 54182
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.19 ; elapsed = 00:00:00.19 . Memory (MB): peak = 2510.750 ; gain = 0.000 ; free physical = 44361 ; free virtual = 60034
+Netlist sorting complete. Time (s): cpu = 00:00:00.2 ; elapsed = 00:00:00.2 . Memory (MB): peak = 2484.293 ; gain = 0.000 ; free physical = 28250 ; free virtual = 54255
 INFO: [Netlist 29-17] Analyzing 1134 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.125 ; gain = 0.000 ; free physical = 44243 ; free virtual = 59917
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2610.668 ; gain = 0.000 ; free physical = 28097 ; free virtual = 54235
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 53d2c1c9
+Synth Design complete | Checksum: 8ece5a24
 INFO: [Common 17-83] Releasing license: Synthesis
-71 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+57 Infos, 21 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:49 ; elapsed = 00:01:24 . Memory (MB): peak = 2635.125 ; gain = 1135.375 ; free physical = 44243 ; free virtual = 59915
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 8436.710; main = 1797.993; forked = 7051.547
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 15766.770; main = 2635.129; forked = 13443.203
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2651.133 ; gain = 0.000 ; free physical = 44242 ; free virtual = 59917
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 2610.668 ; gain = 1104.625 ; free physical = 28098 ; free virtual = 54236
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1754.409; main = 1754.409; forked = 227.106
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3208.789; main = 2610.672; forked = 917.047
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2634.680 ; gain = 0.000 ; free physical = 28094 ; free virtual = 54236
 INFO: [Common 17-1381] The checkpoint '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/secure_serial_clean_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file secure_serial_clean_top_utilization_synth.rpt -pb secure_serial_clean_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 11:11:23 2026...
-[Mon Apr 27 11:11:33 2026] synth_1 finished
-wait_on_runs: Time (s): cpu = 00:02:01 ; elapsed = 00:01:46 . Memory (MB): peak = 1506.984 ; gain = 0.000 ; free physical = 45936 ; free virtual = 61552
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 16:17:51 2026...
+[Mon Apr 27 16:18:01 2026] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:00:34 ; elapsed = 00:00:41 . Memory (MB): peak = 1507.078 ; gain = 0.000 ; free physical = 29910 ; free virtual = 55925
 # set synth_status [get_property STATUS [get_runs synth_1]]
 # puts "synth_1 status: $synth_status"
 synth_1 status: synth_design Complete!
-# if {![string match "*Complete*" $synth_status]} {
-#   puts "ERROR: synthesis did not complete successfully."
-#   exit 1
+# if {[string match -nocase "*failed*" $synth_status]} {
+#     puts "ERROR: synthesis failed."
+#     exit 1
 # }
-# open_run synth_1 -name synth_1
-Design is defaulting to impl run constrset: constrs_1
-Design is defaulting to synth run part: xc7z020clg400-1
+# launch_runs impl_1 -to_step route_design -jobs 4
+[Mon Apr 27 16:18:01 2026] Launched impl_1...
+Run output will be captured here: /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/impl_1/runme.log
+# wait_on_run impl_1
+[Mon Apr 27 16:18:01 2026] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log secure_serial_clean_top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source secure_serial_clean_top.tcl -notrace
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Mon Apr 27 16:18:03 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source secure_serial_clean_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1500.109 ; gain = 25.840 ; free physical = 29506 ; free virtual = 55521
+Command: link_design -top secure_serial_clean_top -part xc7z020clg400-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
 INFO: [Device 21-403] Loading part xc7z020clg400-1
-Netlist sorting complete. Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.1 . Memory (MB): peak = 1739.648 ; gain = 0.000 ; free physical = 45696 ; free virtual = 61313
+Netlist sorting complete. Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.1 . Memory (MB): peak = 1740.711 ; gain = 0.000 ; free physical = 29239 ; free virtual = 55254
 INFO: [Netlist 29-17] Analyzing 1134 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2024.2
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1869.055 ; gain = 0.000 ; free physical = 45585 ; free virtual = 61209
+Read ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1846.273 ; gain = 4.000 ; free physical = 29128 ; free virtual = 55143
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1846.273 ; gain = 0.000 ; free physical = 29128 ; free virtual = 55143
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-open_run: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1873.023 ; gain = 366.039 ; free physical = 45577 ; free virtual = 61201
-# set rpt_dir [file join [get_property DIRECTORY [current_project]] reports]
-# file mkdir $rpt_dir
-# report_utilization -file [file join $rpt_dir post_synth_utilization.rpt] -hierarchical
-# report_timing_summary -file [file join $rpt_dir post_synth_timing_summary.rpt]
+6 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.72 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2082.078 ; gain = 207.992 ; free physical = 29044 ; free virtual = 55059
+
+Starting Cache Timing Information Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
-INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
-report_timing_summary: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 2466.883 ; gain = 593.859 ; free physical = 45081 ; free virtual = 60710
-# report_drc -file [file join $rpt_dir post_synth_drc.rpt]
-Command: report_drc -file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports/post_synth_drc.rpt
+Ending Cache Timing Information Task | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2486.031 ; gain = 403.953 ; free physical = 28631 ; free virtual = 54646
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+Phase 1 Initialization | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Timer Update
+Phase 2.1 Timer Update | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.7 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+
+Phase 2.2 Timing Data Collection
+Phase 2.2 Timing Data Collection | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.72 ; elapsed = 00:00:00.24 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+Phase 2 Timer Update And Timing Data Collection | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:00.72 ; elapsed = 00:00:00.24 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 184dc82bd
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.52 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+Retarget | Checksum: 184dc82bd
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 1b612ceef
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.67 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+Constant propagation | Checksum: 1b612ceef
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28292 ; free virtual = 54307
+Phase 5 Sweep | Checksum: 138058972
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.88 . Memory (MB): peak = 2821.922 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54311
+Sweep | Checksum: 138058972
+INFO: [Opt 31-389] Phase Sweep created 3 cells and removed 0 cells
+
+Phase 6 BUFG optimization
+Phase 6 BUFG optimization | Checksum: 138058972
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.99 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+BUFG optimization | Checksum: 138058972
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 138058972
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+Shift Register Optimization | Checksum: 138058972
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 18c8f192e
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+Post Processing Netlist | Checksum: 18c8f192e
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54310
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+Phase 9 Finalization | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               0  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               3  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2853.938 ; gain = 32.016 ; free physical = 28295 ; free virtual = 54310
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54310
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54310
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54310
+Ending Netlist Obfuscation Task | Checksum: 11ce81b4e
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28295 ; free virtual = 54310
+INFO: [Common 17-83] Releasing license: Implementation
+26 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2853.938 ; gain = 979.852 ; free physical = 28295 ; free virtual = 54310
+INFO: [Vivado 12-24828] Executing command : report_drc -file secure_serial_clean_top_drc_opted.rpt -pb secure_serial_clean_top_drc_opted.pb -rpx secure_serial_clean_top_drc_opted.rpx
+Command: report_drc -file secure_serial_clean_top_drc_opted.rpt -pb secure_serial_clean_top_drc_opted.pb -rpx secure_serial_clean_top_drc_opted.rpx
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2024.2/data/ip'.
 INFO: [DRC 23-27] Running DRC with 8 threads
-INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports/post_synth_drc.rpt.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/impl_1/secure_serial_clean_top_drc_opted.rpt.
 report_drc completed successfully
-# puts "Reports written to: $rpt_dir"
-Reports written to: /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports
-INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 11:11:45 2026...
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2853.938 ; gain = 0.000 ; free physical = 28270 ; free virtual = 54287
+INFO: [Common 17-1381] The checkpoint '/home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/impl_1/secure_serial_clean_top_opt.dcp' has been generated.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-83] Releasing license: Implementation
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2904.145 ; gain = 0.000 ; free physical = 28202 ; free virtual = 54221
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 4a6ea02f
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2904.145 ; gain = 0.000 ; free physical = 28202 ; free virtual = 54221
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2904.145 ; gain = 0.000 ; free physical = 28202 ; free virtual = 54221
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+ERROR: [Place 30-415] IO Placement failed due to overutilization. This design contains 3370 I/O ports
+ while the target  device: 7z020 package: clg400, contains only 255 available user I/O. The target device has 255 usable I/O pins of which 0 are already occupied by user-locked I/Os.
+ To rectify this issue:
+ 1. Ensure you are targeting the correct device and package.  Select a larger device or different package if necessary.
+ 2. Check the top-level ports of the design to ensure the correct number of ports are specified.
+ 3. Consider design changes to reduce the number of I/Os necessary.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+ERROR: [Place 30-68] Instance clk_i_IBUF_BUFG_inst (BUFG) is not placed
+ERROR: [Place 30-68] Instance clk_i_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[0]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[10]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[11]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[12]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[13]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[14]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[15]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[16]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[17]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[18]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[19]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[1]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[20]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[21]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[22]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[23]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[24]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[25]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[26]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[27]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[28]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[29]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[2]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[30]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[31]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[32]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[33]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[34]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[35]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[36]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[37]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[38]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[39]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[3]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[40]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[41]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[42]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[43]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[44]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[45]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[46]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[47]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[48]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[49]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[4]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[50]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[51]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[52]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[53]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[54]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[55]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[5]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[6]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[7]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[8]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_addr_o_OBUF[9]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_ready_i_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_valid_o_OBUF_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[0]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[100]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[101]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[102]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[103]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[104]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[105]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[106]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[107]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[108]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[109]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[10]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[110]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[111]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[112]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[113]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[114]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[115]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[116]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[117]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[118]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[119]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[11]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[120]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[121]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[122]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[123]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[124]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[125]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[126]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[127]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[128]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[129]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[12]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[130]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[131]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[132]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[133]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[134]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance data_mem_req_wdata_o_OBUF[135]_inst (OBUF) is not placed
+INFO: [Common 17-14] Message 'Place 30-68' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: e1be147b
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2936.160 ; gain = 32.016 ; free physical = 28196 ; free virtual = 54215
+Phase 1 Placer Initialization | Checksum: e1be147b
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2936.160 ; gain = 32.016 ; free physical = 28196 ; free virtual = 54215
+ERROR: [Place 30-99] Placer failed with error: 'IO Clock Placer failed'
+Please review all ERROR, CRITICAL WARNING, and WARNING messages during placement to understand the cause for failure.
+Ending Placer Task | Checksum: e1be147b
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2936.160 ; gain = 32.016 ; free physical = 28196 ; free virtual = 54215
+44 Infos, 0 Warnings, 0 Critical Warnings and 103 Errors encountered.
+place_design failed
+ERROR: [Common 17-69] Command failed: Placer could not place all instances
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 16:18:28 2026...
+[Mon Apr 27 16:18:38 2026] impl_1 finished
+ERROR: [Vivado 12-13638] Failed runs(s) : 'impl_1'
+wait_on_runs: Time (s): cpu = 00:00:00.81 ; elapsed = 00:00:37 . Memory (MB): peak = 1507.078 ; gain = 0.000 ; free physical = 29867 ; free virtual = 55886
+ERROR: [Common 17-39] 'wait_on_runs' failed due to earlier errors.
+
+    while executing
+"wait_on_run impl_1"
+    (file "scripts/run_impl_secure_serial_pynq.tcl" line 44)
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 27 16:18:38 2026...

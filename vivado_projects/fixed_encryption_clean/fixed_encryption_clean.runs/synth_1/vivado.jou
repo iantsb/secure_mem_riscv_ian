@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Mon Apr 27 11:09:49 2026
-# Process ID         : 147592
+# Start of session at: Mon Apr 27 16:17:23 2026
+# Process ID         : 219623
 # Current directory  : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1
 # Command line       : vivado -log secure_serial_clean_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source secure_serial_clean_top.tcl
 # Log file           : /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/fixed_encryption_clean.runs/synth_1/secure_serial_clean_top.vds
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700H
-# CPU Frequency      : 1410.512 MHz
+# CPU Frequency      : 400.000 MHz
 # CPU Physical cores : 14
 # CPU Logical cores  : 20
 # Host memory        : 67094 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 75684 MB
-# Available Virtual  : 64428 MB
+# Available Virtual  : 58581 MB
 #-----------------------------------------------------------
 source secure_serial_clean_top.tcl -notrace

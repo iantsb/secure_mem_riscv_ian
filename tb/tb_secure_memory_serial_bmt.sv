@@ -126,7 +126,7 @@ module tb_secure_memory_serial_bmt;
 
       if (data_mem_req_valid_o && data_mem_req_ready_i) begin
         if (data_mem_req_write_o) begin
-          data_mem[data_mem_req_addr_o] <= data_mem_req_wdata_o;
+          data_mem[data_mem_req_addr_o] = data_mem_req_wdata_o;
           data_rsp_data_q               <= '0;
           data_rsp_error_q              <= 1'b0;
           data_rsp_pending_q            <= 1'b1;
@@ -163,7 +163,7 @@ module tb_secure_memory_serial_bmt;
 
       if (meta_mem_req_valid_o && meta_mem_req_ready_i) begin
         if (meta_mem_req_write_o) begin
-          meta_mem[meta_mem_req_addr_o] <= meta_mem_req_wdata_o;
+          meta_mem[meta_mem_req_addr_o] = meta_mem_req_wdata_o;
           meta_write_addr[meta_write_count] = meta_mem_req_addr_o;
           meta_write_data[meta_write_count] = meta_mem_req_wdata_o;
           meta_write_count++;

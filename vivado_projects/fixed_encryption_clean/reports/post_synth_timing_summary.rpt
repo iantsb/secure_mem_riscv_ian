@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date         : Mon Apr 27 11:11:44 2026
+| Date         : Mon Apr 27 14:26:38 2026
 | Host         : lhotse running 64-bit Ubuntu 24.04.3 LTS
 | Command      : report_timing_summary -file /home/ian/amdFPGA/projects/secure_mem_riscv_ian/vivado_projects/fixed_encryption_clean/reports/post_synth_timing_summary.rpt
 | Design       : secure_serial_clean_top
@@ -49,10 +49,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (20482)
+1. checking no_clock (20510)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (61346)
+4. checking unconstrained_internal_endpoints (61430)
 5. checking no_input_delay (1714)
 6. checking no_output_delay (1655)
 7. checking multiple_clock (0)
@@ -62,9 +62,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (20482)
+1. checking no_clock (20510)
 ----------------------------
- There are 20482 register/latch pins with no clock driven by root clock pin: clk_i (HIGH)
+ There are 20510 register/latch pins with no clock driven by root clock pin: clk_i (HIGH)
 
 
 2. checking constant_clock (0)
@@ -77,9 +77,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (61346)
+4. checking unconstrained_internal_endpoints (61430)
 ----------------------------------------------------
- There are 61346 pins that are not constrained for maximum delay. (HIGH)
+ There are 61430 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

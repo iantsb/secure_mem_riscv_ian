@@ -86,20 +86,31 @@ module bmt_hash_compare #(
   );
 
   function automatic logic [AES_BLOCK_W-1:0] header_block;
-    input logic [ADDR_W-1:0]    addr;
-    input logic [VERSION_W-1:0] version;
-    input logic [LEVEL_W-1:0]   level;
-    logic [AES_BLOCK_W-1:0] h;
-    begin
-      h = '0;
-      h[127:112] = DOMAIN_BMT;
-      h[111:80]  = level;
-      h[79:24]   = addr[55:0];
-      h[23:0]    = version[23:0];
-      // The full version is also mixed into the first data compression through chain_q.
-      header_block = h ^ {{(AES_BLOCK_W-VERSION_W){1'b0}}, version};
+  input logic [ADDR_W-1:0]    addr;
+  input logic [VERSION_W-1:0] version;
+  input logic [LEVEL_W-1:0]   level;
+
+  logic [AES_BLOCK_W-1:0] h;
+  logic [55:0]            addr56;
+
+  begin
+    h = '0;
+
+    if (ADDR_W >= 56) begin
+      addr56 = addr[55:0];
+    end else begin
+      addr56 = {{(56-ADDR_W){1'b0}}, addr};
     end
-  endfunction
+
+    h[127:112] = DOMAIN_BMT;
+    h[111:80]  = level;
+    h[79:24]   = addr56;
+    h[23:0]    = version[23:0];
+
+    // The full version is also mixed into the lower VERSION_W bits.
+    header_block = h ^ {{(AES_BLOCK_W-VERSION_W){1'b0}}, version};
+  end
+endfunction
 
   function automatic logic [AES_BLOCK_W-1:0] data_block_at;
     input logic [$clog2(TOTAL_BLOCKS+1)-1:0] idx;
