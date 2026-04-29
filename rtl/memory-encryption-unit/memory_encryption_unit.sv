@@ -1,6 +1,7 @@
 `default_nettype wire
 
 import tilelink::*;
+import metadata_pkg::*;
 
 module memory_encryption_unit #(
     parameter int OUTER_DATA_WIDTH = 64,
@@ -55,7 +56,21 @@ module memory_encryption_unit #(
 
     // ePMP inputs for secure-memory address mapping.
     input riscv_::pmpcfg_t [ROCKETCfg.NrPMPEntries-1:0] pmpcfg_i,
-    input logic [ROCKETCfg.NrPMPEntries-1:0][ROCKETCfg.PLEN-3:0] pmpaddr_i
+    input logic [ROCKETCfg.NrPMPEntries-1:0][ROCKETCfg.PLEN-3:0] pmpaddr_i,
+
+    // Metadata version/counter interface.
+    // READ  path: META_READ_VERSION returns existing version/counter.
+    // WRITE path: META_ALLOC_VERSION increments/allocates and returns new counter.
+    output logic                      meta_req_valid_o,
+    input  logic                      meta_req_ready_i,
+    output meta_op_e                  meta_req_op_o,
+    output logic [ROCKETCfg.PLEN-1:0] meta_req_addr_o,
+    output logic [2:0]                meta_req_lane_o,
+
+    input  logic                      meta_rsp_valid_i,
+    output logic                      meta_rsp_ready_o,
+    input  logic [63:0]               meta_rsp_version_i,
+    input  logic                      meta_rsp_error_i
 );
 
     localparam int CHUNK_WIDTH   = 128;
@@ -112,6 +127,8 @@ module memory_encryption_unit #(
     // ----------------------
     typedef enum logic [3:0] {
         MEU_IDLE,
+        MEU_META_REQ,
+        MEU_META_WAIT,
         MEU_AES_START,
         MEU_AES_WAIT,
         MEU_GET_SEND_MEM,
@@ -132,7 +149,7 @@ module memory_encryption_unit #(
     logic [INNER_DATA_WIDTH-1:0] keystream_q, keystream_n;
     logic [INNER_DATA_WIDTH-1:0] ctr_blocks;
 
-    // Placeholder until metadata counter fetch is wired in.
+    // Metadata-backed version/counter used to form AES-CTR counter blocks.
     logic [63:0] line_counter_q, line_counter_n;
 
     logic is_get_q;
@@ -272,6 +289,12 @@ module memory_encryption_unit #(
         meu_d_resp         = resp_q;
         aes_start          = 1'b0;
 
+        meta_req_valid_o = 1'b0;
+        meta_req_op_o    = META_READ_VERSION;
+        meta_req_addr_o  = '0;
+        meta_req_lane_o  = '0;
+        meta_rsp_ready_o = 1'b0;
+
         unique case (state_q)
             MEU_IDLE: begin
                 if (assembler_a_fire) begin
@@ -282,19 +305,51 @@ module memory_encryption_unit #(
                     is_put_n    = (assembler_a_req.opcode == tilelink::PUTFULLDATA) ||
                                   (assembler_a_req.opcode == tilelink::PUTPARTIALDATA);
 
-                    // --------------------------------------------------------------
-                    // Counter fetch placeholder:
-                    // THIS IS ONLY PRESENT IN TILELINK VERSION
-                    // meu_ctr_datapath solves this
-                    // --------------------------------------------------------------
-                    line_counter_n = 64'h0;
 
                     if (assembler_a_req.opcode == tilelink::GET ||
                         assembler_a_req.opcode == tilelink::PUTFULLDATA ||
                         assembler_a_req.opcode == tilelink::PUTPARTIALDATA) begin
-                        state_n = MEU_AES_START;
+                        // Fetch or allocate metadata version/counter
+                        // before starting AES-CTR.
+                        state_n = MEU_META_REQ;
                     end else begin
                         state_n = MEU_PASS_SEND_MEM;
+                    end
+                end
+            end
+
+            MEU_META_REQ: begin
+                meta_req_valid_o = 1'b1;
+                meta_req_addr_o  = smam_version_addr;
+                meta_req_lane_o  = smam_index;
+
+                // Reads use the existing version/counter.
+                // Writes allocate/increment a new version/counter.
+                meta_req_op_o = is_put_q ? META_ALLOC_VERSION : META_READ_VERSION;
+
+                if (meta_req_ready_i) begin
+                    state_n = MEU_META_WAIT;
+                end
+            end
+
+            MEU_META_WAIT: begin
+                meta_rsp_ready_o = 1'b1;
+
+                if (meta_rsp_valid_i) begin
+                    if (meta_rsp_error_i) begin
+                        resp_n         = '0;
+                        resp_n.opcode  = is_get_q ? tilelink::ACCESSACKDATA
+                                                   : tilelink::ACCESSACK;
+                        resp_n.size    = req_q.size;
+                        resp_n.source  = req_q.source;
+                        resp_n.denied  = 1'b1;
+                        resp_n.corrupt = 1'b1;
+                        resp_n.data    = '0;
+
+                        state_n = is_get_q ? MEU_GET_RESPOND : MEU_PUT_RESPOND;
+                    end else begin
+                        line_counter_n = meta_rsp_version_i;
+                        state_n        = MEU_AES_START;
                     end
                 end
             end
