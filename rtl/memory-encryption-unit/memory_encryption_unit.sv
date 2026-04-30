@@ -70,7 +70,15 @@ module memory_encryption_unit #(
     input  logic                      meta_rsp_valid_i,
     output logic                      meta_rsp_ready_o,
     input  logic [63:0]               meta_rsp_version_i,
-    input  logic                      meta_rsp_error_i
+    input  logic                      meta_rsp_error_i,
+
+    // BMT/secure-controller observability.
+    // used_version_o is the metadata version/counter used for AES-CTR.
+    // xform_data_o is the protected ciphertext line for BMT tagging/checking.
+    output logic                      used_version_valid_o,
+    output logic [63:0]               used_version_o,
+    output logic                      xform_valid_o,
+    output logic [INNER_DATA_WIDTH-1:0] xform_data_o
 );
 
     localparam int CHUNK_WIDTH   = 128;
@@ -149,13 +157,23 @@ module memory_encryption_unit #(
     logic [INNER_DATA_WIDTH-1:0] keystream_q, keystream_n;
     logic [INNER_DATA_WIDTH-1:0] ctr_blocks;
 
-    // Metadata-backed version/counter used to form AES-CTR counter blocks.
+    // Metadata-backed AES-CTR line counter/version.
     logic [63:0] line_counter_q, line_counter_n;
 
     logic is_get_q;
     logic is_get_n;
     logic is_put_q;
     logic is_put_n;
+
+    logic                        used_version_valid_q, used_version_valid_n;
+    logic [63:0]                 used_version_q, used_version_n;
+    logic                        xform_valid_q, xform_valid_n;
+    logic [INNER_DATA_WIDTH-1:0] xform_data_q, xform_data_n;
+
+    assign used_version_valid_o = used_version_valid_q;
+    assign used_version_o       = used_version_q;
+    assign xform_valid_o        = xform_valid_q;
+    assign xform_data_o         = xform_data_q;
 
     // ----------------------
     // Address mapper outputs
@@ -282,6 +300,11 @@ module memory_encryption_unit #(
         is_get_n       = is_get_q;
         is_put_n       = is_put_q;
 
+        used_version_valid_n = 1'b0;
+        used_version_n       = used_version_q;
+        xform_valid_n        = 1'b0;
+        xform_data_n         = xform_data_q;
+
         fragmenter_a_valid = 1'b0;
         fragmenter_a_req   = req_q;
         fragmenter_d_ready = 1'b0;
@@ -348,8 +371,10 @@ module memory_encryption_unit #(
 
                         state_n = is_get_q ? MEU_GET_RESPOND : MEU_PUT_RESPOND;
                     end else begin
-                        line_counter_n = meta_rsp_version_i;
-                        state_n        = MEU_AES_START;
+                        line_counter_n        = meta_rsp_version_i;
+                        used_version_n        = meta_rsp_version_i;
+                        used_version_valid_n  = 1'b1;
+                        state_n               = MEU_AES_START;
                     end
                 end
             end
@@ -383,6 +408,8 @@ module memory_encryption_unit #(
                 if (fragmenter_d_fire) begin
                     resp_n      = fragmenter_d_resp;
                     resp_n.data = fragmenter_d_resp.data ^ keystream_q;
+                    xform_data_n  = fragmenter_d_resp.data;
+                    xform_valid_n = 1'b1;
                     state_n     = MEU_GET_RESPOND;
                 end
             end
@@ -405,6 +432,8 @@ module memory_encryption_unit #(
                 fragmenter_a_valid      = 1'b1;
                 fragmenter_a_req        = req_q;
                 fragmenter_a_req.data   = req_q.data ^ keystream_q;
+                xform_data_n            = req_q.data ^ keystream_q;
+                xform_valid_n           = 1'b1;
                 if (fragmenter_a_fire) begin
                     state_n = MEU_PUT_WAIT_ACK;
                 end
@@ -477,6 +506,10 @@ module memory_encryption_unit #(
             line_counter_q <= '0;
             is_get_q       <= 1'b0;
             is_put_q       <= 1'b0;
+            used_version_valid_q <= 1'b0;
+            used_version_q       <= '0;
+            xform_valid_q        <= 1'b0;
+            xform_data_q         <= '0;
         end else begin
             state_q        <= state_n;
             req_q          <= req_n;
@@ -485,6 +518,10 @@ module memory_encryption_unit #(
             line_counter_q <= line_counter_n;
             is_get_q       <= is_get_n;
             is_put_q       <= is_put_n;
+            used_version_valid_q <= used_version_valid_n;
+            used_version_q       <= used_version_n;
+            xform_valid_q        <= xform_valid_n;
+            xform_data_q         <= xform_data_n;
         end
     end
 

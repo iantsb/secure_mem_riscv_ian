@@ -26,5 +26,10 @@ vivado_projects/
 __pycache__/
 *.pyc
 
+*.jou
+*.log
+*.str
+
+
 # Large/generated
 obj_dir/
